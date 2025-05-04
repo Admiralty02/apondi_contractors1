@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Apondi Contractors Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#64748b'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    :where([class^="ri-"])::before { content: "\f3c2"; }
+    html {
+    scroll-behavior: smooth;
+    }
+    body {
+    font-family: 'Inter', sans-serif;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    .dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+    }
+    .dropdown-trigger:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    }
+    .nav-link {
+    position: relative;
+    transition: color 0.3s;
+    }
+    .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+    }
+    .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .project-card img {
+    transition: transform 0.5s ease;
+    }
+    .project-card:hover img {
+    transform: scale(1.05);
+    }
+    .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+    }
+    .mobile-menu.active {
+    transform: translateX(0);
+    }
+    @keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(10px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    .animate-fade-in {
+    animation: fadeIn 0.4s ease forwards;
+    }
+    .hero-content {
+    animation-delay: 0.2s;
+    }
+    #mobile-services-menu a {
+      padding: 0.5rem 1rem;
+      background-color: #f9fafb;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    #mobile-services-menu a:hover {
+      background-color: #e5e7eb;
+    }
+    header {
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full h-20 bg-green-500 shadow-sm z-50">
+    <div class="container mx-auto px-4 h-full flex items-center justify-between">
+    <a href="index.html" class="font-['Pacifico'] text-3xl text-primary">Apondi Contractors Limited</a>
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center space-x-8">
+    <a href="index.html" class="nav-link font-medium text-gray-900 hover:text-primary">Home</a>
+    <a href="about.html" class="nav-link font-medium text-gray-900 hover:text-primary">About</a>
+    <div class="dropdown-trigger relative group">
+    <a href="service.html" class="nav-link font-medium text-gray-900 hover:text-primary flex items-center">
+    Services
+    <div class="w-5 h-5 flex items-center justify-center ml-1">
+    <i class="ri-arrow-down-s-line"></i>
+    </div>
+    </a>
+    <div class="dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded shadow-lg py-2 z-50">
+    <a href="service.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Structural Engineering</a>
+    <a href="service.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Transportation</a>
+    <a href="service.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Environmental Engineering</a>
+    <a href="service.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Construction Management</a>
+    <a href="service.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Geotechnical Services</a>
+    </div>
+    </div>
+    <a href="project.html" class="nav-link font-medium text-gray-900 hover:text-primary">Projects</a>
+    <a href="blog.html" class="nav-link font-medium text-gray-900 hover:text-primary">Blog</a>
+    <a href="contact.html" class="nav-link font-medium text-gray-900 hover:text-primary">Contact</a>
+    <a href="#" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">Get a Quote</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+    <i class="ri-menu-line text-2xl"></i>
+    </button>
+    </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-[80%] max-w-sm bg-green-500 shadow-xl z-50 lg:hidden">
+    <div class="p-6">
+    <div class="flex justify-between items-center mb-8">
+    <a href="index.html" class="font-['Pacifico'] text-2xl text-primary">Apondi Contractors</a>
+    <button id="close-menu" class="w-10 h-10 flex items-center justify-center text-gray-700">
+    <i class="ri-close-line text-2xl"></i>
+    </button>
+    </div>
+    <nav class="flex flex-col space-y-4">
+    <a href="index.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Home</a>
+    <a href="about.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">About</a>
+    <div class="py-2 border-b border-gray-100">
+    <button id="mobile-services-dropdown" class="flex items-center justify-between w-full font-medium text-gray-900">
+    Services
+    <div class="w-5 h-5 flex items-center justify-center">
+    <i class="ri-arrow-down-s-line"></i>
+    </div>
+    </button>
+    <div id="mobile-services-menu" class="hidden mt-2 pl-4 space-y-2">
+    <a href="service.html" class="block py-2 text-gray-800">Structural Engineering</a>
+    <a href="service.html" class="block py-2 text-gray-800">Transportation</a>
+    <a href="service.html" class="block py-2 text-gray-800">Environmental Engineering</a>
+    <a href="service.html" class="block py-2 text-gray-800">Construction Management</a>
+    <a href="service.html" class="block py-2 text-gray-800">Geotechnical Services</a>
+    </div>
+    </div>
+    <a href="project.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Projects</a>
+    <a href="blog.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Blog</a>
+    <a href="contact.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Contact</a>
+    <a href="#" class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center mt-4 whitespace-nowrap">Get a Quote</a>
+    </nav>
+    </div>
+    </div>
+
+
+  <!-- Gallery Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Our Gallery</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Explore our collection of project images showcasing our expertise and commitment to excellence.</p>
+      </div>
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Gallery items will be dynamically loaded here -->
+      </div>
+      <div id="paginationControls" class="flex justify-between items-center mt-8">
+        <button id="prevPage" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" disabled>Previous</button>
+        <span id="currentPage" class="text-gray-600">Page 1</span>
+        <button id="nextPage" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div>
+    <a href="index.html" class="font-['Pacifico'] text-3xl text-white mb-6 inline-block">Apondi Contractors LTD</a>
+    <p class="text-gray-400 mb-6">Providing innovative engineering solutions for complex infrastructure challenges since 2000.</p>
+    <div class="flex space-x-4">
+    <a href="https://www.linkedin.com/in/Apondi-contractors" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    <a href="https://x.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-twitter-x-fill"></i>
+    </a>
+    <a href="https://facebook.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="https://instagram.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-instagram-fill"></i>
+    </a>
+    </div>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Services</h3>
+    <ul class="space-y-3">
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Structural Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Transportation Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Environmental Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Construction Management</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Geotechnical Services</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Water Resources</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+    <ul class="space-y-3">
+    <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+    <li><a href="project.html" class="text-gray-400 hover:text-white transition">Projects</a></li>
+    <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+    <li><a href="career.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+    <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+    <li><a href="t&c.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Contact Us</h3>
+    <ul class="space-y-3">
+    <li class="flex items-start">
+    <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+    <i class="ri-map-pin-line"></i>
+    </div>
+    <span class="text-gray-400">Argwengs Kodhek Avenue<br>KISUMU, KSM 40100</span>
+    </li>
+    <li class="flex items-center">
+    <div class="w-5 h-5 flex items-center justify-center mr-3">
+    <i class="ri-phone-line"></i>
+    </div>
+    <span class="text-gray-400">+254735490458</span>
+    </li>
+    <li class="flex items-center">
+    <div class="w-5 h-5 flex items-center justify-center mr-3">
+    <i class="ri-mail-line"></i>
+    </div>
+    <span class="text-gray-400">info@apondicontractorsltd.com</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+    <p class="text-gray-500 mb-4 md:mb-0">© 2025 Admiral Technologies. All rights reserved.</p>
+    <div class="flex space-x-6">
+    <a href="t&c.html" class="text-gray-500 hover:text-white transition">Terms of Service</a>
+    <a href="t&c.html" class="text-gray-500 hover:text-white transition">Privacy Policy</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>
+    
+
+  <!-- Scripts -->
+  <script>
+    const API_BASE_URL = "http://localhost:3000/api";
+    let currentPage = 1;
+    const itemsPerPage = 8;
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuButton.addEventListener('click', function() {
+    mobileMenu.classList.add('active');
+  });
+  closeMenuButton.addEventListener('click', function() {
+    mobileMenu.classList.remove('active');
+  });
+
+  // Mobile services dropdown
+  const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+  const mobileServicesMenu = document.getElementById('mobile-services-menu');
+  mobileServicesDropdown.addEventListener('click', function() {
+    mobileServicesMenu.classList.toggle('hidden');
+  });
+
+  // Sticky header
+  const header = document.querySelector('header');
+  const headerHeight = header.offsetHeight;
+  function updateHeaderOnScroll() {
+    if (window.scrollY > 50) {
+      header.classList.add('shadow-md');
+      header.classList.add('bg-white/95');
+      header.classList.add('backdrop-blur-sm');
+    } else {
+      header.classList.remove('shadow-md');
+      header.classList.remove('bg-white/95');
+      header.classList.remove('backdrop-blur-sm');
+    }
+  }
+  window.addEventListener('scroll', updateHeaderOnScroll);
+});
+
+    async function fetchGallery(page = 1, limit = itemsPerPage) {
+      try {
+        const response = await fetch(`${API_BASE_URL}/gallery?page=${page}&limit=${limit}`);
+        if (!response.ok) throw new Error("Failed to fetch gallery items");
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+        alert("Error loading gallery items.");
+        return [];
+      }
+    }
+
+    async function renderGallery(page = 1) {
+      const galleryGrid = document.getElementById("galleryGrid");
+      galleryGrid.innerHTML = "<p>Loading...</p>";
+
+      const galleryItems = await fetchGallery(page);
+      if (galleryItems.length === 0) {
+        galleryGrid.innerHTML = "<p>No items found.</p>";
+        return;
+      }
+
+      galleryGrid.innerHTML = galleryItems
+        .map(
+          (item) => `
+          <div class="gallery-item bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition">
+            <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold">${item.title}</h3>
+              <p class="text-gray-600">${item.description}</p>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    function updatePaginationControls() {
+      document.getElementById("currentPage").textContent = `Page ${currentPage}`;
+      document.getElementById("prevPage").disabled = currentPage === 1;
+    }
+
+    document.getElementById("prevPage").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderGallery(currentPage);
+        updatePaginationControls();
+      }
+    });
+
+    document.getElementById("nextPage").addEventListener("click", async () => {
+      const galleryItems = await fetchGallery(currentPage + 1);
+      if (galleryItems.length > 0) {
+        currentPage++;
+        renderGallery(currentPage);
+        updatePaginationControls();
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderGallery(currentPage);
+      updatePaginationControls();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Apondi Contracts</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#3b82f6", secondary: "#64748b" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      html {
+      scroll-behavior: smooth;
+      }
+      body {
+      font-family: 'Inter', sans-serif;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .dropdown {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+      }
+      .dropdown-trigger:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      }
+      .nav-link {
+      position: relative;
+      transition: color 0.3s;
+      }
+      .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #3b82f6;
+      transition: width 0.3s ease;
+      }
+      .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+      }
+      .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-out;
+      }
+      .mobile-menu.active {
+      transform: translateX(0);
+      }
+      @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+      animation: fadeIn 0.6s ease forwards;
+      }
+      .category-pill {
+      transition: all 0.3s ease;
+      }
+      .category-pill:hover {
+      transform: translateY(-2px);
+      }
+      .category-pill.active {
+      background-color: #3b82f6;
+      color: white;
+      }
+      .filter-checkbox {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      .filter-checkbox + label {
+      cursor: pointer;
+      position: relative;
+      padding-left: 28px;
+      display: inline-block;
+      color: #4b5563;
+      transition: color 0.2s ease;
+      }
+      .filter-checkbox + label:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      }
+      .filter-checkbox:checked + label {
+      color: #1f2937;
+      }
+      .filter-checkbox:checked + label:before {
+      border-color: #3b82f6;
+      background-color: #3b82f6;
+      }
+      .filter-checkbox:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      width: 6px;
+      height: 11px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+      .custom-select {
+      position: relative;
+      }
+      .custom-select-trigger {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background-color: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+      }
+      .custom-select-trigger:after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #6b7280;
+      transform: translateY(-50%);
+      transition: transform 0.2s ease;
+      }
+      .custom-select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 0.25rem;
+      background-color: white;
+      border-radius: 0.375rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      }
+      .custom-select.open .custom-select-trigger:after {
+      transform: translateY(-50%) rotate(180deg);
+      }
+      .custom-select.open .custom-select-options {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      }
+      .custom-select-option {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      }
+      .custom-select-option:hover {
+      background-color: #f3f4f6;
+      }
+      .custom-select-option.selected {
+      background-color: #e5e7eb;
+      }
+      .project-modal {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+      }
+      .project-modal.active {
+      opacity: 1;
+      visibility: visible;
+      }
+      .project-modal-content {
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      }
+      .project-modal.active .project-modal-content {
+      transform: translateY(0);
+      }
+      .view-toggle-btn {
+      transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .view-toggle-btn.active {
+      background-color: #3b82f6;
+      color: white;
+      }
+      .project-gallery-nav {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      }
+      .project-gallery:hover .project-gallery-nav {
+      opacity: 1;
+      }
+      .custom-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+      }
+      .custom-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e7eb;
+      transition: .4s;
+      border-radius: 24px;
+      }
+      .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      }
+      input:checked + .switch-slider {
+      background-color: #3b82f6;
+      }
+      input:checked + .switch-slider:before {
+      transform: translateX(24px);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full h-20 bg-green-500 shadow-sm z-50">
+      <div
+        class="container mx-auto px-4 h-full flex items-center justify-between"
+      >
+        <a href="index.html" class="font-['Pacifico'] text-3xl text-primary">Apondi Contractors Limited</a>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a
+            href="index.html"
+            data-readdy="true"
+            class="nav-link font-medium text-gray-900 hover:text-primary"
+            >Home</a
+          >
+          <a
+            href="about.html"
+            data-readdy="true"
+            class="nav-link font-medium text-gray-900 hover:text-primary"
+            >About</a
+          >
+          <div class="dropdown-trigger relative group">
+            <a
+              href="service.html"
+              class="nav-link font-medium text-gray-900 hover:text-primary flex items-center"
+            >
+              Services
+              <div class="w-5 h-5 flex items-center justify-center ml-1">
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </a>
+            <div
+              class="dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded shadow-lg py-2 z-50"
+            >
+              <a
+                href="service.html"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary"
+                >Structural Engineering</a
+              >
+              <a
+                href="service.html"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary"
+                >Transportation</a
+              >
+              <a
+                href="service.html"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary"
+                >Environmental Engineering</a
+              >
+              <a
+                href="service.html"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary"
+                >Construction Management</a
+              >
+              <a
+                href="service.html"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary"
+                >Geotechnical Services</a
+              >
+            </div>
+          </div>
+          <a
+            href="project.html"
+            class="nav-link font-medium text-gray-900 hover:text-primary"
+            >Projects</a
+          >
+          <a
+            href="blog.html"
+            data-readdy="true"
+            class="nav-link font-medium text-gray-900 hover:text-primary"
+            >Blog</a
+          >
+          <a
+            href="contact.html"
+            class="nav-link active font-medium text-gray-900 hover:text-primary"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap"
+            >Get a Quote</a
+          >
+        </nav>
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+        >
+          <i class="ri-menu-line text-2xl"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="mobile-menu fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-xl z-50 lg:hidden"
+    >
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-8">
+          <a href="index.html" class="font-['Pacifico'] text-2xl text-primary">Apondi Contractors Limited</a>
+          <button
+            id="close-menu"
+            class="w-10 h-10 flex items-center justify-center text-gray-700"
+          >
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+          <a
+            href="index.html"
+            data-readdy="true"
+            class="font-medium text-gray-900 py-2 border-b border-gray-100"
+            >Home</a
+          >
+          <a
+            href="about.html"
+            data-readdy="true"
+            class="font-medium text-gray-900 py-2 border-b border-gray-100"
+            >About</a
+          >
+          <div class="py-2 border-b border-gray-100">
+            <button
+              id="mobile-services-dropdown"
+              class="flex items-center justify-between w-full font-medium text-gray-900"
+            >
+              Services
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </button>
+            <div id="mobile-services-menu" class="hidden mt-2 pl-4 space-y-2">
+              <a href="service.html" class="block py-2 text-gray-800"
+                >Structural Engineering</a
+              >
+              <a href="service.html" class="block py-2 text-gray-800">Transportation</a>
+              <a href="service.html" class="block py-2 text-gray-800"
+                >Environmental Engineering</a
+              >
+              <a href="service.html" class="block py-2 text-gray-800"
+                >Construction Management</a
+              >
+              <a href="service.html" class="block py-2 text-gray-800"
+                >Geotechnical Services</a
+              >
+            </div>
+          </div>
+          <a
+            href="project.html"
+            class="font-medium text-primary py-2 border-b border-gray-100"
+            >Projects</a
+          >
+          <a
+            href="blog.html"
+            class="font-medium text-gray-900 py-2 border-b border-gray-100"
+            >Blog</a
+          >
+          <a
+            href="contact.html"
+            class="font-medium text-gray-900 py-2 border-b border-gray-100"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center mt-4 whitespace-nowrap"
+            >Get a Quote</a
+          >
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-green-500 via-orange-500 to-green-300 text-white py-20 text-center">
+        <h1 class="text-4xl font-bold">Contact Us</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto flex flex-col md:flex-row gap-8 py-8">
+        <!-- Contact Info -->
+        <div class="bg-white shadow-md rounded-lg p-6 w-full md:w-1/2">
+            <h2 class="text-2xl font-bold mb-4">More About Us</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center">
+                    <i class="fas fa-envelope text-red-500 text-2xl mr-4"></i>
+                    <a href="mailto:jackochieng01@gmail.com" class="text-lg font-medium hover:underline">Email Us</a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-phone text-green-500 text-2xl mr-4"></i>
+                    <a href="tel:+254735490458" class="text-lg font-medium hover:underline">Call Us</a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fab fa-whatsapp text-green-500 text-2xl mr-4"></i>
+                    <a href="https://wa.me/254735490458" target="_blank" class="text-lg font-medium hover:underline">WhatsApp</a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fab fa-linkedin text-blue-500 text-2xl mr-4"></i>
+                    <a href="https://linkedin.com/in/david-ochieng-207b51233" target="_blank" class="text-lg font-medium hover:underline">LinkedIn</a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-map-marker-alt text-red-500 text-2xl mr-4"></i>
+                    <a href="https://www.google.com/maps?q=Tom+Mboya+Street,+Kisumu,+Kenya" target="_blank" class="text-lg font-medium hover:underline">Location</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white shadow-md rounded-lg p-6 w-full md:w-1/2">
+            <h2 class="text-2xl font-bold mb-4">Leave a Message</h2>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Name</label>
+                    <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Your Email" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium">Message</label>
+                    <textarea id="message" name="message" rows="5" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div>
+    <a href="index.html" class="font-['Pacifico'] text-3xl text-white mb-6 inline-block">Apondi Contractors Limited</a>
+    <p class="text-gray-400 mb-6">Providing innovative engineering solutions for complex infrastructure challenges since 2000.</p>
+    <div class="flex space-x-4">
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-twitter-x-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+    <i class="ri-instagram-fill"></i>
+    </a>
+    </div>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Services</h3>
+    <ul class="space-y-3">
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Structural Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Transportation Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Environmental Engineering</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Construction Management</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Geotechnical Services</a></li>
+    <li><a href="service.html" class="text-gray-400 hover:text-white transition">Water Resources</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+    <ul class="space-y-3">
+    <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+    <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+    <li><a href="project.html" class="text-gray-400 hover:text-white transition">Projects</a></li>
+    <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+    <li><a href="career.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+    <li><a href="contact.html" class="text-primary hover:text-white transition">Contact</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-xl font-semibold mb-6">Contact Us</h3>
+    <ul class="space-y-3">
+    <li class="flex items-start">
+    <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+    <i class="ri-map-pin-line"></i>
+    </div>
+    <span class="text-gray-400">Argwengs Kodhek Avenue<br>KISUMU, KSM 40100</span>
+    </li>
+    <li class="flex items-center">
+    <div class="w-5 h-5 flex items-center justify-center mr-3">
+    <i class="ri-phone-line"></i>
+    </div>
+    <span class="text-gray-400">+254735490458</span>
+    </li>
+    <li class="flex items-center">
+    <div class="w-5 h-5 flex items-center justify-center mr-3">
+    <i class="ri-mail-line"></i>
+    </div>
+    <span class="text-gray-400">jakochieng01@gmail.com</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+    <p class="text-gray-500 mb-4 md:mb-0">© 2025 Admiral Technologies. All rights reserved.</p>
+    <div class="flex space-x-6">
+    <a href="#" class="text-gray-500 hover:text-white transition">Terms of Service</a>
+    <a href="#" class="text-gray-500 hover:text-white transition">Privacy Policy</a>
+    <a href="#" class="text-gray-500 hover:text-white transition">Sitemap</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition-opacity opacity-0">
+        ↑ Back to Top
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.add('active');
+        });
+        closeMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+        // Mobile services dropdown
+        const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+        const mobileServicesMenu = document.getElementById('mobile-services-menu');
+        mobileServicesDropdown.addEventListener('click', function() {
+        mobileServicesMenu.classList.toggle('hidden');
+        });
+        });
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const res = await fetch('/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+            
+            const result = await res.json();
+            alert(result.success || result.error);
+            document.getElementById('contactForm').reset();
+        });
+
+        const backToTopButton = document.getElementById('backToTop');
+
+        // Show or hide the button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTopButton.classList.remove('opacity-0');
+                backToTopButton.classList.add('opacity-100');
+            } else {
+                backToTopButton.classList.remove('opacity-100');
+                backToTopButton.classList.add('opacity-0');
+            }
+        });
+
+        // Scroll to the top when the button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
