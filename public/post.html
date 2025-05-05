@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Details</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-500 shadow-sm sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-['Pacifico'] text-primary">Apondi Contractors Limited</a>
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-colors">Home</a>
+          <a href="blog.html" class="text-gray-600 hover:text-primary transition-colors">Blog</a>
+          <a href="project.html" class="text-gray-600 hover:text-primary transition-colors">Projects</a>
+          <a href="contact.html" class="text-gray-600 hover:text-primary transition-colors">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <div id="postContent" class="bg-white rounded-lg shadow-md p-6">
+          <p>Loading post...</p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+        const id = urlParams.get('id');
+
+        if (!type || !id) {
+          document.getElementById('postContent').innerHTML = '<p class="text-red-500">Invalid post details.</p>';
+          return;
+        }
+
+        document.getElementById('project-list').innerHTML = '<p>Loading projects...</p>';
+        document.getElementById('blog-list').innerHTML = '<p>Loading blogs...</p>';
+
+        try {
+          const response = await fetch(`/api/${type}/${id}`);
+          if (!response.ok) throw new Error('Post not found');
+
+          const post = await response.json();
+          document.getElementById('postContent').innerHTML = `
+            <h1 class="text-3xl font-bold mb-4">${post.title}</h1>
+            <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p class="text-gray-700 mb-4">${post.description}</p>
+            <div class="text-gray-500 text-sm">Published on: ${post.date}</div>
+          `;
+        } catch (error) {
+          document.getElementById('postContent').innerHTML = '<p class="text-red-500">Failed to load post details.</p>';
+        }
+
+        fetchData();
+      });
+
+      async function fetchData() {
+        try {
+          const [projectsRes, blogsRes] = await Promise.all([
+            fetch('/api/projects'),
+            fetch('/api/blogs'),
+          ]);
+
+          if (!projectsRes.ok || !blogsRes.ok) throw new Error('Failed to fetch data');
+
+          allProjects = await projectsRes.json();
+          allBlogs = await blogsRes.json();
+
+          renderProjects();
+          renderBlogs();
+        } catch (error) {
+          document.getElementById('project-list').innerHTML = '<p class="text-red-500">Failed to load projects.</p>';
+          document.getElementById('blog-list').innerHTML = '<p class="text-red-500">Failed to load blogs.</p>';
+        }
+      }
+
+      function renderCard(item) {
+        const imageUrl = item.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image';
+        return `
+          <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+            <a href="/post.html?type=${item.type}&id=${item.id}">
+              <img src="${imageUrl}" alt="${item.title}" class="w-full h-40 object-cover rounded-md mb-4">
+              <h3 class="text-lg font-bold text-gray-800 mb-2">${item.title}</h3>
+            </a>
+            <p class="text-sm text-gray-600">${item.description}</p>
+          </div>
+        `;
+      }
+    </script>
+  </body>
+</html>

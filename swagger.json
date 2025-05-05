@@ -1,0 +1,212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Documentation",
+    "description": "API documentation for the project"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/blogs": {
+      "get": {
+        "summary": "Get all blogs",
+        "responses": {
+          "200": {
+            "description": "A list of blogs"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new blog",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "content": { "type": "string" },
+                "author": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Blog created successfully"
+          }
+        }
+      }
+    },
+    "/api/gallery": {
+      "get": {
+        "summary": "Get all gallery images",
+        "responses": {
+          "200": {
+            "description": "A list of gallery images"
+          }
+        }
+      },
+      "post": {
+        "summary": "Upload a new image",
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "The image file to upload"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Image uploaded successfully"
+          }
+        }
+      }
+    },
+    "/api/feedback": {
+      "get": {
+        "summary": "Get all feedback",
+        "responses": {
+          "200": {
+            "description": "A list of feedback messages"
+          }
+        }
+      },
+      "post": {
+        "summary": "Submit feedback",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "message": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feedback submitted successfully"
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "summary": "Get all projects",
+        "responses": {
+          "200": {
+            "description": "A list of projects"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new project",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "link": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Project created successfully"
+          }
+        }
+      }
+    },
+    "/api/services": {
+      "get": {
+        "summary": "Get all services",
+        "responses": {
+          "200": {
+            "description": "A list of services"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new service",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "price": { "type": "number" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Service created successfully"
+          }
+        }
+      }
+    },
+    "/api/admin/login": {
+      "post": {
+        "summary": "Admin login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/api/admin/profile": {
+      "get": {
+        "summary": "Get admin profile",
+        "responses": {
+          "200": {
+            "description": "Admin profile details"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+}

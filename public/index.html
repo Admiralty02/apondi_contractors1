@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Solutions</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#2563eb',secondary:'#475569'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        }
+        .dropdown-trigger:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="bg-background">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full h-20 bg-headerBackground shadow-sm z-50">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            <a href="index.html" class="font-['Pacifico'] text-primary text-3xl">Apondi Contractors Limited</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="index.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300 active">Home</a>
+                <a href="about.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300">About</a>
+                
+                <div class="dropdown-trigger relative">
+                    <a href="service.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300 flex items-center">
+                        Services
+                        <div class="w-5 h-5 flex items-center justify-center ml-1">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </a>
+                    <div class="dropdown absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded p-4 z-20">
+                        <div class="space-y-3">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded transition-colors duration-300">Structural Engineering</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded transition-colors duration-300">Transportation</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded transition-colors duration-300">Environmental Engineering</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded transition-colors duration-300">Construction Management</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded transition-colors duration-300">Geotechnical Services</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="project.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300">Projects</a>
+                <a href="blog.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300">Blog</a>
+                <a href="contact.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300">Contact</a>
+                <button class="bg-primary text-white px-6 py-2.5 rounded-button font-medium hover:bg-primary/90 transition-colors duration-300">Get a Quote</button>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="mobile-menu-button">
+                <i class="ri-menu-line text-2xl"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-[300px] bg-white shadow-lg z-50 lg:hidden pt-20">
+        <div class="flex flex-col p-5 space-y-4">
+            <a href="index.html" class="text-textPrimary font-medium hover:text-primary transition-colors duration-300 py-2 border-b border-gray-100">Home</a>
+            <a href="about.html" class="text-textPrimary font-medium hover:text-primary transition-colors duration-300 py-2 border-b border-gray-100">About</a>
+            
+            <div class="py-2 border-b border-gray-100">
+                <button class="flex items-center justify-between w-full text-left text-gray-800 font-medium hover:text-primary transition-colors duration-300" id="mobile-services-button">
+                  <a href="service.html" class="nav-link text-textPrimary font-medium hover:text-primary transition-colors duration-300 flex items-center">
+                    Services
+                    <div class="w-5 h-5 flex items-center justify-center ml-1">
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                  </a>
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                </button>
+                <div class="hidden mt-2 pl-4 space-y-2" id="mobile-services-dropdown">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Structural Engineering</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Transportation</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Environmental Engineering</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Construction Management</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Geotechnical Services</a>
+                </div>
+            </div>
+            
+            <a href="project.html" class="text-textPrimary font-medium hover:text-primary transition-colors duration-300 py-2 border-b border-gray-100">Projects</a>
+            <a href="blog.html" class="text-textPrimary font-medium hover:text-primary transition-colors duration-300 py-2 border-b border-gray-100">Blog</a>
+            <a href="contact.html" class="text-textPrimary font-medium hover:text-primary transition-colors duration-300 py-2 border-b border-gray-100">Contact</a>
+            <button class="bg-primary text-white px-6 py-2.5 rounded-button font-medium hover:bg-primary/90 transition-colors duration-300 mt-4 whitespace-nowrap">Get a Quote</button>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="fixed inset-0 bg-black/50 z-40 hidden" id="mobile-overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] w-full overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20civil%20engineering%20infrastructure%20with%20bridge%20construction%20and%20highway%20development%2C%20dramatic%20lighting%2C%20aerial%20perspective%2C%20professional%20photography%20style%2C%20clean%20composition%20with%20blue%20sky%20and%20modern%20cityscape%20in%20background%2C%20high%20resolution%2C%20photorealistic&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40"></div>
+        <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="max-w-2xl animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">Engineering the Future, Building Today</h1>
+                <p class="text-xl text-white/90 mb-8">Innovative civil engineering solutions that transform communities and shape sustainable infrastructure for generations to come.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-accent text-white px-8 py-3.5 rounded-button font-medium hover:bg-accent/90 transition-colors duration-300">Our Services</button>
+                    <button class="bg-white text-primary px-8 py-3.5 rounded-button font-medium hover:bg-gray-100 transition-colors duration-300">View Projects</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="py-20 bg-background">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-textPrimary mb-4">Our Engineering Services</h2>
+                <p class="text-xl text-textPrimary max-w-3xl mx-auto">Comprehensive civil engineering solutions tailored to meet the unique challenges of modern infrastructure development.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-1">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=structural%20engineering%2C%20modern%20building%20structure%20with%20visible%20steel%20framework%2C%20architectural%20detail%2C%20professional%20photography%2C%20clean%20composition%20with%20neutral%20background%2C%20technical%20perspective&width=600&height=400&seq=2&orientation=landscape" alt="Structural Engineering" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-building-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Structural Engineering</h3>
+                        <p class="text-textSecondary mb-4">Innovative structural designs that balance safety, functionality, and aesthetics for commercial, residential, and industrial projects.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-2">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=transportation%20engineering%2C%20modern%20highway%20interchange%20with%20smooth%20curves%20and%20efficient%20traffic%20flow%2C%20aerial%20view%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%2C%20technical%20perspective&width=600&height=400&seq=3&orientation=landscape" alt="Transportation Engineering" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-road-map-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Transportation</h3>
+                        <p class="text-textSecondary mb-4">Comprehensive transportation solutions including highway design, traffic management systems, and sustainable urban mobility planning.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-3">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=environmental%20engineering%2C%20water%20treatment%20facility%20with%20modern%20filtration%20systems%2C%20sustainable%20design%20elements%2C%20professional%20photography%2C%20clean%20composition%20with%20natural%20surroundings%2C%20technical%20perspective&width=600&height=400&seq=4&orientation=landscape" alt="Environmental Engineering" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-plant-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Environmental Engineering</h3>
+                        <p class="text-textSecondary mb-4">Sustainable environmental solutions including water management, waste treatment, and ecological conservation for development projects.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-1">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=construction%20management%2C%20active%20construction%20site%20with%20cranes%20and%20workers%2C%20organized%20workflow%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%2C%20technical%20perspective&width=600&height=400&seq=5&orientation=landscape" alt="Construction Management" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-hammer-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Construction Management</h3>
+                        <p class="text-textSecondary mb-4">End-to-end project management services ensuring timely delivery, quality control, and cost-effective execution of construction projects.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-2">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=geotechnical%20engineering%2C%20soil%20testing%20and%20foundation%20work%2C%20detailed%20soil%20layers%20visible%2C%20professional%20photography%2C%20clean%20composition%20with%20construction%20equipment%2C%20technical%20perspective&width=600&height=400&seq=6&orientation=landscape" alt="Geotechnical Services" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-earth-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Geotechnical Services</h3>
+                        <p class="text-textSecondary mb-4">Specialized soil and foundation engineering including site investigation, soil testing, and foundation design for challenging terrains.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden animate-fade-in animate-delay-3">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=urban%20planning%20and%20design%2C%20modern%20city%20development%20with%20mixed-use%20buildings%20and%20green%20spaces%2C%20aerial%20view%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%2C%20technical%20perspective&width=600&height=400&seq=7&orientation=landscape" alt="Urban Planning" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-community-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-textPrimary mb-3">Urban Planning</h3>
+                        <p class="text-textSecondary mb-4">Comprehensive urban development solutions that integrate infrastructure, transportation, and community spaces for sustainable city growth.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors duration-300">
+                            Learn More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Projects Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore our portfolio of innovative engineering solutions that have transformed communities and infrastructure worldwide.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-1">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20suspension%20bridge%20spanning%20across%20river%2C%20architectural%20marvel%2C%20dramatic%20lighting%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%20and%20water%2C%20technical%20perspective&width=600&height=450&seq=8&orientation=landscape" alt="Harbor Bridge Project" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Harbor Bridge Expansion</h3>
+                        <p class="text-gray-600 mb-3">A 2.1 km suspension bridge connecting downtown with the harbor district, featuring innovative seismic protection systems.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>San Francisco, California</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-2">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20high-rise%20commercial%20building%20with%20glass%20facade%2C%20architectural%20marvel%2C%20dramatic%20lighting%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%20and%20urban%20surroundings%2C%20technical%20perspective&width=600&height=450&seq=9&orientation=landscape" alt="Skyline Tower" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Skyline Tower Complex</h3>
+                        <p class="text-gray-600 mb-3">A 68-story mixed-use development featuring cutting-edge structural systems and sustainable design principles.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>Singapore</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-3">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20water%20treatment%20facility%20with%20sustainable%20design%2C%20architectural%20marvel%2C%20professional%20photography%2C%20clean%20composition%20with%20natural%20surroundings%20and%20water%20features%2C%20technical%20perspective&width=600&height=450&seq=10&orientation=landscape" alt="Eco Water Treatment" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Eco Water Treatment Facility</h3>
+                        <p class="text-gray-600 mb-3">A state-of-the-art water treatment plant serving 1.2 million residents with innovative filtration technology.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>L. Victoria Basin, Nyanza</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-1">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20highway%20interchange%20with%20multiple%20levels%20and%20smooth%20curves%2C%20aerial%20view%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%20and%20surrounding%20landscape%2C%20technical%20perspective&width=600&height=450&seq=11&orientation=landscape" alt="Urban Highway Network" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Urban Highway Network</h3>
+                        <p class="text-gray-600 mb-3">A comprehensive 43 km highway system with innovative interchanges reducing congestion by 47% in the metropolitan area.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>Nairobi, Kenya</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-2">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20subway%20station%20with%20innovative%20architecture%20and%20efficient%20design%2C%20interior%20view%2C%20professional%20photography%2C%20clean%20composition%20with%20commuters%20and%20transit%20infrastructure%2C%20technical%20perspective&width=600&height=450&seq=12&orientation=landscape" alt="Metro Transit System" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Metro Transit System</h3>
+                        <p class="text-gray-600 mb-3">A 37-station underground transit network featuring earthquake-resistant tunnels and energy-efficient station design.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>Seoul, South Korea</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-3">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20sports%20stadium%20with%20innovative%20roof%20structure%20and%20efficient%20design%2C%20aerial%20view%2C%20professional%20photography%2C%20clean%20composition%20with%20surrounding%20urban%20landscape%2C%20technical%20perspective&width=600&height=450&seq=13&orientation=landscape" alt="Olympic Stadium" class="w-full h-full object-cover object-top transition-transform duration-700">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-primary px-6 py-2.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">View Project</button>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Olympic Stadium Complex</h3>
+                        <p class="text-gray-600 mb-3">A 75,000-seat multi-purpose stadium featuring a retractable roof and innovative structural engineering solutions.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>London, United Kingdom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-white border border-gray-300 text-gray-800 px-8 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors duration-300 whitespace-nowrap">View All Projects</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Why Choose Our Engineering Expertise</h2>
+                    <p class="text-lg text-gray-600 mb-8">With over 25 years of industry experience, we deliver innovative engineering solutions that combine technical excellence with practical implementation. Our multidisciplinary team approaches each project with creativity and precision.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mr-4">
+                                <i class="ri-award-line text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Technical Excellence</h3>
+                                <p class="text-gray-600">Our team includes industry-recognized experts with specialized knowledge across all civil engineering disciplines.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mr-4">
+                                <i class="ri-lightbulb-line text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Innovative Approach</h3>
+                                <p class="text-gray-600">We leverage cutting-edge technologies and methodologies to solve complex engineering challenges with creative solutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mr-4">
+                                <i class="ri-recycle-line text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Sustainability Focus</h3>
+                                <p class="text-gray-600">Environmental responsibility is integrated into every project, ensuring sustainable outcomes that minimize ecological impact.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mr-4">
+                                <i class="ri-team-line text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Collaborative Process</h3>
+                                <p class="text-gray-600">We work closely with clients, stakeholders, and partners to ensure alignment and successful project delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative h-[600px] rounded-lg overflow-hidden shadow-lg animate-fade-in animate-delay-2">
+                    <img src="https://readdy.ai/api/search-image?query=civil%20engineers%20working%20on%20site%2C%20diverse%20team%20reviewing%20plans%20and%20inspecting%20construction%2C%20professional%20setting%2C%20clean%20composition%20with%20construction%20equipment%20and%20blueprint%20review%2C%20technical%20perspective&width=800&height=1000&seq=14&orientation=portrait" alt="Engineering Team" class="w-full h-full object-cover object-top">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="animate-fade-in">
+                    <div class="text-5xl font-bold text-white mb-2">200+</div>
+                    <p class="text-xl text-white/80">Projects Completed</p>
+                </div>
+                
+                <div class="animate-fade-in animate-delay-1">
+                    <div class="text-5xl font-bold text-white mb-2">15+</div>
+                    <p class="text-xl text-white/80">Years Experience</p>
+                </div>
+                
+                <div class="animate-fade-in animate-delay-2">
+                    <div class="text-5xl font-bold text-white mb-2">80+</div>
+                    <p class="text-xl text-white/80">Expert Engineers</p>
+                </div>
+                
+                <div class="animate-fade-in animate-delay-3">
+                    <div class="text-5xl font-bold text-white mb-2">42</div>
+                    <p class="text-xl text-white/80">Industry Awards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Client Testimonials</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hear what our clients have to say about their experience working with our engineering team.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-1">
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"The engineering team exceeded our expectations with their innovative approach to our complex bridge project. Their attention to detail and commitment to sustainability resulted in a structure that not only meets our functional requirements but also enhances the surrounding environment."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Michael Richardson</h4>
+                            <p class="text-gray-500 text-sm">Director of Infrastructure, Metropolitan Transit Authority</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-2">
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Working with this team on our commercial development was a seamless experience. Their expertise in structural engineering and construction management ensured our project was completed on time and within budget, despite the challenging site conditions."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Jennifer Lawson</h4>
+                            <p class="text-gray-500 text-sm">CEO, Horizon Development Group</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-3">
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"The environmental engineering solutions provided for our water treatment facility were truly innovative. The team's commitment to sustainable design principles has resulted in significant operational cost savings and reduced environmental impact."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Robert Thompson</h4>
+                            <p class="text-gray-500 text-sm">Environmental Director, City of Westlake</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-primary rounded-xl p-10 md:p-16 relative overflow-hidden animate-fade-in">
+                <div class="absolute inset-0 opacity-10">
+                    <img src="https://readdy.ai/api/search-image?query=abstract%20engineering%20blueprint%20pattern%2C%20technical%20drawing%20with%20grid%20lines%20and%20measurements%2C%20light%20blue%20on%20dark%20background%2C%20professional%20clean%20composition&width=1200&height=600&seq=15&orientation=landscape" alt="Blueprint Background" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="relative z-10 max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Infrastructure Vision?</h2>
+                    <p class="text-xl text-white/90 mb-8">Contact our engineering team today to discuss your project requirements and discover how our expertise can bring your vision to life.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button class="bg-white text-primary px-8 py-3.5 !rounded-button font-medium hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">Schedule a Consultation</button>
+                        <button class="bg-transparent border-2 border-white text-white px-8 py-3.5 !rounded-button font-medium hover:bg-white/10 transition-colors duration-300 whitespace-nowrap">View Our Portfolio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blog Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Latest Insights</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay updated with the latest trends, technologies, and best practices in civil engineering.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=sustainable%20building%20design%20with%20green%20roof%20and%20solar%20panels%2C%20modern%20architecture%2C%20professional%20photography%2C%20clean%20composition%20with%20blue%20sky%2C%20technical%20perspective&width=600&height=400&seq=16&orientation=landscape" alt="Sustainable Building Design" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-calendar-line"></i>
+                            </div>
+                            <span>April 18, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>Sustainability</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Future of Sustainable Infrastructure Design</h3>
+                        <p class="text-gray-600 mb-4">Exploring innovative approaches to creating environmentally responsible infrastructure that minimizes carbon footprint while maximizing functionality.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors duration-300">
+                            Read More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-2">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=civil%20engineer%20using%20digital%20tablet%20with%20augmented%20reality%20on%20construction%20site%2C%20technology%20integration%2C%20professional%20photography%2C%20clean%20composition%20with%20construction%20equipment%2C%20technical%20perspective&width=600&height=400&seq=17&orientation=landscape" alt="Digital Transformation" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-calendar-line"></i>
+                            </div>
+                            <span>April 10, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>Technology</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Digital Transformation in Civil Engineering</h3>
+                        <p class="text-gray-600 mb-4">How BIM, digital twins, and AI are revolutionizing the way we design, construct, and maintain infrastructure projects.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors duration-300">
+                            Read More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in animate-delay-3">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=resilient%20infrastructure%20design%20for%20climate%20change%20adaptation%2C%20flood%20protection%20systems%2C%20professional%20photography%2C%20clean%20composition%20with%20water%20management%20features%2C%20technical%20perspective&width=600&height=400&seq=18&orientation=landscape" alt="Climate Resilient Infrastructure" class="w-full h-full object-cover object-top transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-calendar-line"></i>
+                            </div>
+                            <span>April 2, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>Resilience</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Building Climate-Resilient Infrastructure</h3>
+                        <p class="text-gray-600 mb-4">Strategies for designing and constructing infrastructure that can withstand extreme weather events and adapt to changing climate conditions.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors duration-300">
+                            Read More
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-white border border-gray-300 text-gray-800 px-8 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors duration-300 whitespace-nowrap">View All Articles</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Subscribe to Our Newsletter</h2>
+                <p class="text-lg text-gray-600 mb-8">Stay informed about the latest developments in civil engineering, project updates, and industry insights.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                    <button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Subscribe</button>
+                </form>
+                <p class="text-sm text-gray-500 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="index.html" class="font-['Pacifico'] text-white text-3xl mb-6 inline-block">Apondi Contractors Limited</a>
+                    <p class="text-gray-400 mb-6">Innovative civil engineering solutions for a sustainable and resilient future. Building tomorrow's infrastructure today.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="ri-twitter-x-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="wa.me/+254735490458" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="ri-whatsapp-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="service.html" class="text-gray-400 hover:text-white transition-colors duration-300">Services</a></li>
+                        <li><a href="project.html" class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a></li>
+                        <li><a href="career.html" class="text-gray-400 hover:text-white transition-colors duration-300">Careers</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Structural Engineering</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Transportation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Environmental Engineering</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Construction Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Geotechnical Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Urban Planning</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="text-gray-400">Oginga Odinga Street<br>Kisumu City</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="text-gray-400">+254735490458</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="text-gray-400">info@engineeringsolutions.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-time-line"></i>
+                            </div>
+                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Admiral Technologies. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 text-sm hover:text-white transition-colors duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 text-sm hover:text-white transition-colors duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 text-sm hover:text-white transition-colors duration-300">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileOverlay.classList.toggle('hidden');
+                document.body.classList.toggle('overflow-hidden');
+            });
+            
+            mobileOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Services Dropdown Toggle
+            const mobileServicesButton = document.getElementById('mobile-services-button');
+            const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+            
+            mobileServicesButton.addEventListener('click', function() {
+                mobileServicesDropdown.classList.toggle('hidden');
+                const icon = mobileServicesButton.querySelector('i');
+                if (icon.classList.contains('ri-arrow-down-s-line')) {
+                    icon.classList.remove('ri-arrow-down-s-line');
+                    icon.classList.add('ri-arrow-up-s-line');
+                } else {
+                    icon.classList.remove('ri-arrow-up-s-line');
+                    icon.classList.add('ri-arrow-down-s-line');
+                }
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sticky Header
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight;
+            
+            function handleScroll() {
+                if (window.scrollY > headerHeight) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation on scroll
+            const animatedElements = document.querySelectorAll('.animate-fade-in');
+            
+            function checkInView() {
+                animatedElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight * 0.85) {
+                        element.style.opacity = '1';
+                    }
+                });
+            }
+            
+            // Set initial opacity to 0
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+            });
+            
+            window.addEventListener('scroll', checkInView);
+            window.addEventListener('resize', checkInView);
+            
+            // Trigger on initial load
+            checkInView();
+        });
+    </script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#2563eb', /* Trustworthy Blue */
+          secondary: '#475569', /* Neutral Gray */
+          accent: '#fbbf24', /* Energetic Yellow */
+          background: '#808000', /* Olive Green Background */
+          textPrimary: '#1f2937', /* Dark Gray for Text */
+          textSecondary: '#6b7280', /* Muted Gray for Subtext */
+          headerBackground: '#228B22', /* Forest Green for Header */
+        },
+        borderRadius: {
+          button: '8px',
+        },
+      },
+    },
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latest Articles and Insights | Apondi Contractors</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#3b82f6", secondary: "#10b981" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      color: #1f2937;
+      }
+      input:focus, button:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .featured-post-gradient {
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+      }
+      .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-green-500 shadow-sm sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <a href="index.html" class="text-2xl font-['Pacifico'] text-primary">Apondi Contractors Limited</a>
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="blog.html" class="text-primary font-medium">Blog</a>
+          <a
+            href="about.html"
+            class="text-gray-600 hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="contact.html"
+            class="text-gray-600 hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center space-x-4">
+          <div class="relative hidden md:block">
+            <input
+              type="text"
+              placeholder="Search articles..."
+              class="w-64 px-4 py-2 pr-10 border border-gray-200 rounded focus:border-primary text-sm"
+            />
+            <div
+              class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400"
+            >
+              <i class="ri-search-line"></i>
+            </div>
+          </div>
+          <button
+            id="subscribeBtn"
+            class="bg-primary text-white px-5 py-2 !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap"
+          >
+            Subscribe
+          </button>
+          <div
+            id="subscribeModal"
+            class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center"
+          >
+            <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative">
+              <button
+                id="closeModal"
+                class="absolute right-4 top-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700"
+              >
+                <i class="ri-close-line ri-lg"></i>
+              </button>
+              <h2 class="text-2xl font-bold mb-6">
+                Subscribe to Our Newsletter
+              </h2>
+              <form id="subscribeForm" class="space-y-6">
+                <div>
+                  <label
+                    for="emailInput"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="emailInput"
+                    required
+                    class="w-full px-4 py-2 border border-gray-200 rounded focus:border-primary"
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Content Preferences</label
+                  >
+                  <div class="space-y-3">
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="preferences"
+                        value="structural"
+                        class="w-4 h-4 text-primary border-gray-300 rounded"
+                      />
+                      <span class="ml-2 text-gray-700"
+                        >Structural Engineering</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="preferences"
+                        value="geotechnical"
+                        class="w-4 h-4 text-primary border-gray-300 rounded"
+                      />
+                      <span class="ml-2 text-gray-700"
+                        >Geotechnical Engineering</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="preferences"
+                        value="construction"
+                        class="w-4 h-4 text-primary border-gray-300 rounded"
+                      />
+                      <span class="ml-2 text-gray-700"
+                        >Construction Management</span
+                      >
+                    </label>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors"
+                >
+                  Subscribe Now
+                </button>
+              </form>
+            </div>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const subscribeBtn = document.getElementById("subscribeBtn");
+              const modal = document.getElementById("subscribeModal");
+              const closeBtn = document.getElementById("closeModal");
+              const form = document.getElementById("subscribeForm");
+              subscribeBtn.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+              });
+              closeBtn.addEventListener("click", () => {
+                modal.classList.add("hidden");
+                document.body.style.overflow = "";
+              });
+              modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                  modal.classList.add("hidden");
+                  document.body.style.overflow = "";
+                }
+              });
+              form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const email = document.getElementById("emailInput").value;
+                const preferences = Array.from(
+                  form.querySelectorAll('input[name="preferences"]:checked'),
+                ).map((checkbox) => checkbox.value);
+                const successModal = document.createElement("div");
+                successModal.className =
+                  "fixed inset-0 bg-black/50 z-50 flex items-center justify-center";
+                successModal.innerHTML = `
+            <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 text-green-500 flex items-center justify-center">
+            <i class="ri-checkbox-circle-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Thank You for Subscribing!</h3>
+            <p class="text-gray-600 mb-6">We'll keep you updated with the latest news and articles.</p>
+            <button class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors">
+            Close
+            </button>
+            </div>
+            `;
+                modal.classList.add("hidden");
+                document.body.appendChild(successModal);
+                successModal.querySelector("button").addEventListener("click", () => {
+                  successModal.remove();
+                  document.body.style.overflow = "";
+                });
+                form.reset();
+              });
+            });
+          </script>
+          <button
+            class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+          >
+            <i class="ri-menu-line ri-lg"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <!--Hero Section-->
+        <section class="bg-white pt-8 pb-12">
+            <div class="container mx-auto px-4">
+              <div class="relative rounded-xl overflow-hidden h-[500px] group">
+                <img
+                  src="https://readdy.ai/api/search-image?query=modern%20office%20workspace%20with%20laptop%20and%20coffee%2C%20business%20professionals%20discussing%20web%20development%20strategy%2C%20clean%20minimalist%20design%2C%20soft%20natural%20lighting%2C%20tech%20workspace%2C%20high-quality%20professional%20photograph&width=1200&height=600&seq=1&orientation=landscape"
+                  alt="Featured post"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="absolute inset-0 featured-post-gradient flex flex-col justify-end p-8 md:p-12"
+                  id="featuredContent"
+                >
+                  <div
+                    class="bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full w-fit mb-4 opacity-100"
+                  >
+                    <span class="featured-category">Structural Engineering</span>
+                  </div>
+                  <h1
+                    class="text-3xl md:text-4xl font-bold text-white mb-4 max-w-3xl opacity-100 featured-title"
+                  >
+                    Revolutionary Advancements in Earthquake-Resistant Building
+                    Design: A 2025 Perspective
+                  </h1>
+                  <div
+                    class="flex items-center text-white/90 mb-4 opacity-100 featured-author"
+                  >
+                    <img
+                      src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20distinguished%20senior%20structural%20engineer%20in%20formal%20attire%2C%20architectural%20office%20background%2C%20confident%20and%20experienced&width=100&height=100&seq=2&orientation=squarish"
+                      alt="Author"
+                      class="w-10 h-10 rounded-full object-cover mr-3"
+                    />
+                    <div>
+                      <p class="font-medium">Dr. Steven Ochieng</p>
+                      <p class="text-sm">April 24, 2025 · 15 min read</p>
+                    </div>
+                  </div>
+                  <a
+                    href="/post.html?type=blog&id=${featuredArticle.id}" class="bg-white text-primary px-6 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap w-fit opacity-100">
+                    Read Article
+                  </a>
+                </div>
+                <script>
+                  document.addEventListener("DOMContentLoaded", async function () {
+                    const featuredContent = document.getElementById("featuredContent");
+                    const blogGrid = document.querySelector(".grid");
+                
+                    // Fetch blog data from the API
+                    try {
+                      const response = await fetch("/api/blogs"); // Replace with your actual API endpoint
+                      if (!response.ok) throw new Error("Failed to fetch blogs");
+                      const blogs = await response.json();
+                
+                      // Render the featured article
+                      const featuredArticle = blogs[0]; // Assuming the first blog is the featured one
+                      featuredContent.innerHTML = `
+                        <div class="bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full w-fit mb-4 opacity-100">
+                          <span class="featured-category">${featuredArticle.category}</span>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4 max-w-3xl opacity-100 featured-title">
+                          ${featuredArticle.title}
+                        </h1>
+                        <div class="flex items-center text-white/90 mb-4 opacity-100 featured-author">
+                          <img src="${featuredArticle.authorImage}" alt="${featuredArticle.author}" class="w-10 h-10 rounded-full object-cover mr-3">
+                          <div>
+                            <p class="font-medium">${featuredArticle.author}</p>
+                            <p class="text-sm">${featuredArticle.date} · ${featuredArticle.readTime}</p>
+                          </div>
+                        </div>
+                        <a href="/post.html?type=blog&id=${featuredArticle.id}" class="bg-white text-primary px-6 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap w-fit opacity-100">
+                          Read Article
+                        </a>
+                      `;
+                
+                      // Render the blog grid
+                      blogGrid.innerHTML = blogs
+                        .slice(1) // Skip the featured article
+                        .map(
+                          (blog) => `
+                          <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 post-card">
+                            <a href="/post.html?type=blog&id=${blog.id}">
+                              <div class="h-48 overflow-hidden">
+                                <img src="${blog.image}" alt="${blog.title}" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                              </div>
+                              <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                  <span class="bg-blue-100 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">${blog.category}</span>
+                                  <span class="text-gray-400 text-sm ml-auto">${blog.date}</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">${blog.title}</h3>
+                                <p class="text-gray-600 mb-4 line-clamp-2">${blog.description}</p>
+                                <div class="flex items-center">
+                                  <img src="${blog.authorImage}" alt="${blog.author}" class="w-8 h-8 rounded-full object-cover mr-3">
+                                  <span class="text-sm font-medium">${blog.author}</span>
+                                  <span class="text-gray-400 text-sm ml-auto">${blog.readTime}</span>
+                                </div>
+                              </div>
+                            </a>
+                          </article>
+                        `
+                        )
+                        .join("");
+                    } catch (error) {
+                      console.error("Error fetching blogs:", error);
+                      featuredContent.innerHTML = `<p class="text-red-500">Failed to load featured article.</p>`;
+                      blogGrid.innerHTML = `<p class="text-red-500">Failed to load blog articles.</p>`;
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+        </section>
+
+
+    <!-- Main Content -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <!-- Categories -->
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold">Latest Articles</h2>
+            <div class="bg-white rounded-full p-1 shadow-sm">
+              <div class="flex" id="categoryButtons">
+                <button
+                  id="allBtn"
+                  class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium whitespace-nowrap"
+                >
+                  All
+                </button>
+                <button
+                  id="structuralBtn"
+                  class="px-4 py-2 rounded-full text-gray-600 text-sm font-medium hover:bg-gray-100 whitespace-nowrap"
+                >
+                  Structural
+                </button>
+                <button
+                  id="geotechnicalBtn"
+                  class="px-4 py-2 rounded-full text-gray-600 text-sm font-medium hover:bg-gray-100 whitespace-nowrap"
+                >
+                  Geotechnical
+                </button>
+                <button
+                  id="constructionBtn"
+                  class="px-4 py-2 rounded-full text-gray-600 text-sm font-medium hover:bg-gray-100 whitespace-nowrap"
+                >
+                  Construction
+                </button>
+                <button
+                  id="environmentalBtn"
+                  class="px-4 py-2 rounded-full text-gray-600 text-sm font-medium hover:bg-gray-100 whitespace-nowrap"
+                >
+                  Environmental
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Blog Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Post 1 -->
+            <article
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 post-card"
+            >
+              <a href="/blog/sustainable-construction">
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=modern%20sustainable%20construction%20site%20with%20solar%20panels%20and%20green%20building%20materials%2C%20workers%20in%20safety%20gear%2C%20eco-friendly%20construction%20practices%2C%20professional%20architectural%20photograph&width=400&height=200&seq=3&orientation=landscape"
+                    alt="Sustainable Construction"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <span
+                      class="bg-blue-100 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full"
+                      >Sustainability</span
+                    >
+                    <span class="text-gray-400 text-sm ml-auto"
+                      >April 24, 2025</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    Innovative Sustainable Construction Methods for 2025
+                  </h3>
+                  <p class="text-gray-600 mb-4 line-clamp-2">
+                    Explore cutting-edge sustainable construction techniques and
+                    materials that are revolutionizing the industry while
+                    minimizing environmental impact.
+                  </p>
+                  <div class="flex items-center">
+                    <img
+                      src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20civil%20engineer%20with%20hard%20hat%2C%20neutral%20background%2C%20professional%20attire&width=100&height=100&seq=4&orientation=squarish"
+                      alt="Author"
+                      class="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <span class="text-sm font-medium">Dr. Sarah Anderson</span>
+                    <span class="text-gray-400 text-sm ml-auto">8 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+            <!-- Post 2 -->
+            <article
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 post-card"
+            >
+              <a href="/blog/seismic-design">
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=structural%20engineering%20design%20software%20showing%20seismic%20analysis%20of%20a%20modern%20building%2C%203D%20model%20visualization%2C%20professional%20engineering%20workspace&width=400&height=200&seq=5&orientation=landscape"
+                    alt="Seismic Design"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <span
+                      class="bg-green-100 text-secondary text-xs font-medium px-2.5 py-0.5 rounded-full"
+                      >Structural</span
+                    >
+                    <span class="text-gray-400 text-sm ml-auto"
+                      >April 20, 2025</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    Advanced Seismic Design Principles for High-Rise Buildings
+                  </h3>
+                  <p class="text-gray-600 mb-4 line-clamp-2">
+                    Latest developments in seismic design methodology and how to
+                    implement them in modern high-rise construction projects.
+                  </p>
+                  <div class="flex items-center">
+                    <img
+                      src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20structural%20engineer%20with%20glasses%2C%20neutral%20background%2C%20professional%20attire&width=100&height=100&seq=6&orientation=squarish"
+                      alt="Author"
+                      class="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <span class="text-sm font-medium">Prof. David Chen</span>
+                    <span class="text-gray-400 text-sm ml-auto">10 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+            <!-- Post 3 -->
+            <article
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 post-card"
+            >
+              <a href="/blog/soil-analysis">
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=geotechnical%20engineering%20site%20with%20soil%20testing%20equipment%2C%20engineers%20analyzing%20soil%20samples%2C%20professional%20field%20work%20photograph&width=400&height=200&seq=7&orientation=landscape"
+                    alt="Soil Analysis"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <span
+                      class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
+                      >Geotechnical</span
+                    >
+                    <span class="text-gray-400 text-sm ml-auto"
+                      >April 18, 2025</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    Modern Soil Analysis Techniques for Foundation Design
+                  </h3>
+                  <p class="text-gray-600 mb-4 line-clamp-2">
+                    Comprehensive guide to contemporary soil testing methods and
+                    their application in foundation engineering projects.
+                  </p>
+                  <div class="flex items-center">
+                    <img
+                      src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20geotechnical%20engineer%2C%20neutral%20background%2C%20professional%20attire&width=100&height=100&seq=8&orientation=squarish"
+                      alt="Author"
+                      class="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <span class="text-sm font-medium">Dr. Emily Rodriguez</span>
+                    <span class="text-gray-400 text-sm ml-auto">7 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!--Pagination-->
+            <div class="col-span-full mt-8 flex justify-center">
+              <nav class="flex items-center space-x-2">
+                <a
+                  href="#"
+                  class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+                  >1</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-2 bg-white text-gray-600 rounded-md hover:bg-gray-100 transition-colors"
+                  >2</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-2 bg-white text-gray-600 rounded-md hover:bg-gray-100 transition-colors"
+                  >3</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-2 bg-white text-gray-600 rounded-md hover:bg-gray-100 transition-colors"
+                  >Next</a
+                >
+              </nav>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <!--CTA Section-->
+        <section class="py-16 bg-primary/5">
+            <div class="container mx-auto px-4">
+              <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">
+                  Stay Updated with Our Newsletter
+                </h2>
+                <p class="text-gray-600 mb-8">
+                  Get the latest articles, tutorials, and updates delivered straight
+                  to your inbox. No spam, just valuable content.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="flex-1 px-4 py-3 border-none rounded shadow-sm text-gray-700"
+                  />
+                  <button
+                    id="newsletterSubscribeBtn"
+                    class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              id="newsletterModal"
+              class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center"
+            >
+              <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative">
+                <button
+                  id="closeNewsletterModal"
+                  class="absolute right-4 top-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700"
+                >
+                  <i class="ri-close-line ri-lg"></i>
+                </button>
+                <h2 class="text-2xl font-bold mb-6">Complete Your Subscription</h2>
+                <form id="newsletterForm" class="space-y-6">
+                  <div>
+                    <label
+                      for="newsletterEmail"
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      id="newsletterEmail"
+                      required
+                      class="w-full px-4 py-2 border border-gray-200 rounded focus:border-primary"
+                      placeholder="Enter your email"
+                    />
+                    <p id="emailError" class="text-red-500 text-sm mt-1 hidden">
+                      Please enter a valid email address
+                    </p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Content Preferences</label
+                    >
+                    <div class="space-y-3">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="newsletterPreferences"
+                          value="structural"
+                          class="w-4 h-4 text-primary border-gray-300 rounded"
+                        />
+                        <span class="ml-2 text-gray-700">Structural Engineering</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="newsletterPreferences"
+                          value="geotechnical"
+                          class="w-4 h-4 text-primary border-gray-300 rounded"
+                        />
+                        <span class="ml-2 text-gray-700"
+                          >Geotechnical Engineering</span
+                        >
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="newsletterPreferences"
+                          value="construction"
+                          class="w-4 h-4 text-primary border-gray-300 rounded"
+                        />
+                        <span class="ml-2 text-gray-700"
+                          >Construction Management</span
+                        >
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="consentCheckbox"
+                        required
+                        class="w-4 h-4 text-primary border-gray-300 rounded mt-1"
+                      />
+                      <span class="ml-2 text-sm text-gray-600"
+                        >I agree to receive newsletters and accept the
+                        <a href="#" class="text-primary hover:underline"
+                          >privacy policy</a
+                        ></span
+                      >
+                    </label>
+                    <p id="consentError" class="text-red-500 text-sm mt-1 hidden">
+                      Please accept the privacy policy
+                    </p>
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    Subscribe Now
+                  </button>
+                </form>
+              </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white pt-16 pb-8">
+            <div class="container mx-auto px-4">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                <a href="index.html" class="font-['Pacifico'] text-3xl text-white mb-6 inline-block">Apondi Contractors LTD</a>
+                <p class="text-gray-400 mb-6">Providing innovative engineering solutions for complex infrastructure challenges since 2000.</p>
+                <div class="flex space-x-4">
+                <a href="https://www.linkedin.com/in/Apondi-contractors" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+                <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="https://x.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+                <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a href="https://facebook.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+                <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="https://instagram.com/" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+                <i class="ri-instagram-fill"></i>
+                </a>
+               </div>
+             </div>
+            <div>
+            <h3 class="text-xl font-semibold mb-6">Services</h3>
+            <ul class="space-y-3">
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Structural Engineering</a></li>
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Transportation Engineering</a></li>
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Environmental Engineering</a></li>
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Construction Management</a></li>
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Geotechnical Services</a></li>
+            <li><a href="service.html" class="text-gray-400 hover:text-white transition">Water Resources</a></li>
+            </ul>
+            </div>
+            <div>
+            <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+            <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+            <li><a href="project.html" class="text-gray-400 hover:text-white transition">Projects</a></li>
+            <li><a href="blog.html" class="text-primary hover:text-white transition">Blog</a></li>
+            <li><a href="career.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+            <li><a href="t&c.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+            </ul>
+            </div>
+            <div>
+            <h3 class="text-xl font-semibold mb-6">Contact Us</h3>
+            <ul class="space-y-3">
+            <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+            <i class="ri-map-pin-line"></i>
+            </div>
+            <span class="text-gray-400">Argwengs Kodhek Avenue<br>KISUMU, KSM 40100</span>
+            </li>
+            <li class="flex items-center">
+            <div class="w-5 h-5 flex items-center justify-center mr-3">
+            <i class="ri-phone-line"></i>
+            </div>
+            <span class="text-gray-400">+254735490458</span>
+            </li>
+            <li class="flex items-center">
+            <div class="w-5 h-5 flex items-center justify-center mr-3">
+            <i class="ri-mail-line"></i>
+            </div>
+            <span class="text-gray-400">info@apondicontractorsltd.com</span>
+            </li>
+            </ul>
+            </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 mb-4 md:mb-0">© 2025 Admiral Technologies. All rights reserved.</p>
+            <div class="flex space-x-6">
+            <a href="t&c.html" class="text-gray-500 hover:text-white transition">Terms of Service</a>
+            <a href="t&c.html" class="text-gray-500 hover:text-white transition">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-white transition">Sitemap</a>
+            </div>
+            </div>
+            </div>
+            </div>
+        </footer>
+
+        <button id="backToTop" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition-opacity opacity-0">
+            ↑ Back to Top
+        </button>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+        const newsletterSubscribeBtn = document.getElementById(
+          "newsletterSubscribeBtn",
+        );
+        const newsletterModal = document.getElementById("newsletterModal");
+        const closeNewsletterModal = document.getElementById("closeNewsletterModal");
+        const newsletterForm = document.getElementById("newsletterForm");
+        const emailInput = document.getElementById("newsletterEmail");
+        const consentCheckbox = document.getElementById("consentCheckbox");
+        const emailError = document.getElementById("emailError");
+        const consentError = document.getElementById("consentError");
+        function validateEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        newsletterSubscribeBtn.addEventListener("click", () => {
+          newsletterModal.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+          emailInput.value = document.querySelector('input[type="email"]').value;
+        });
+        closeNewsletterModal.addEventListener("click", () => {
+          newsletterModal.classList.add("hidden");
+          document.body.style.overflow = "";
+          emailError.classList.add("hidden");
+          consentError.classList.add("hidden");
+        });
+        newsletterModal.addEventListener("click", (e) => {
+          if (e.target === newsletterModal) {
+            newsletterModal.classList.add("hidden");
+            document.body.style.overflow = "";
+            emailError.classList.add("hidden");
+            consentError.classList.add("hidden");
+          }
+        });
+        newsletterForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          let isValid = true;
+          if (!validateEmail(emailInput.value)) {
+            emailError.classList.remove("hidden");
+            isValid = false;
+          } else {
+            emailError.classList.add("hidden");
+          }
+          if (!consentCheckbox.checked) {
+            consentError.classList.remove("hidden");
+            isValid = false;
+          } else {
+            consentError.classList.add("hidden");
+          }
+          if (isValid) {
+            const preferences = Array.from(
+              newsletterForm.querySelectorAll(
+                'input[name="newsletterPreferences"]:checked',
+              ),
+            ).map((checkbox) => checkbox.value);
+            const successModal = document.createElement("div");
+            successModal.className =
+              "fixed inset-0 bg-black/50 z-50 flex items-center justify-center";
+            successModal.innerHTML = `
+      <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
+      <div class="w-16 h-16 mx-auto mb-4 text-green-500 flex items-center justify-center">
+      <i class="ri-checkbox-circle-line ri-3x"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Thank You for Subscribing!</h3>
+      <p class="text-gray-600 mb-6">You'll start receiving our newsletter at ${emailInput.value}</p>
+      <button class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors">
+      Close
+      </button>
+      </div>
+      `;
+            newsletterModal.classList.add("hidden");
+            document.body.appendChild(successModal);
+            successModal.querySelector("button").addEventListener("click", () => {
+              successModal.remove();
+              document.body.style.overflow = "";
+            });
+            newsletterForm.reset();
+          }
+        });
+        const categoryButtons = document.getElementById("categoryButtons");
+        const articles = document.querySelectorAll("article");
+        const pagination = document.querySelector('nav[aria-label="Pagination"]');
+        function updateActiveButton(activeButton) {
+          categoryButtons.querySelectorAll("button").forEach((button) => {
+            if (button === activeButton) {
+              button.classList.remove("text-gray-600", "hover:bg-gray-100");
+              button.classList.add("bg-primary", "text-white");
+            } else {
+              button.classList.remove("bg-primary", "text-white");
+              button.classList.add("text-gray-600", "hover:bg-gray-100");
+            }
+          });
+        }
+        function filterArticles(category) {
+          articles.forEach((article) => {
+            const categoryTag = article.querySelector(
+              'span[class*="text-"]',
+            ).textContent;
+            if (category === "All" || categoryTag === category) {
+              article.style.display = "";
+            } else {
+              article.style.display = "none";
+            }
+          });
+          const visibleArticles = Array.from(articles).filter(
+            (article) => article.style.display !== "none",
+          ).length;
+          const totalPages = Math.ceil(visibleArticles / 6);
+          if (totalPages <= 1) {
+            pagination.style.display = "none";
+          } else {
+            pagination.style.display = "";
+          }
+        }
+        document.getElementById("allBtn").addEventListener("click", function () {
+          updateActiveButton(this);
+          filterArticles("All");
+        });
+        document
+          .getElementById("structuralBtn")
+          .addEventListener("click", function () {
+            updateActiveButton(this);
+            filterArticles("Structural");
+          });
+        document
+          .getElementById("geotechnicalBtn")
+          .addEventListener("click", function () {
+            updateActiveButton(this);
+            filterArticles("Geotechnical");
+          });
+        document
+          .getElementById("constructionBtn")
+          .addEventListener("click", function () {
+            updateActiveButton(this);
+            filterArticles("Construction");
+          });
+        document
+          .getElementById("environmentalBtn")
+          .addEventListener("click", function () {
+            updateActiveButton(this);
+            filterArticles("Environmental");
+          });
+        // Mobile menu toggle
+        const menuButton = document.querySelector("button.md\\:hidden");
+        const mobileMenu = document.createElement("div");
+        mobileMenu.className =
+          "fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out";
+        mobileMenu.innerHTML = `
+      <div class="flex justify-between items-center p-4 border-b">
+      <a href="index.html" class="text-2xl font-['Pacifico'] text-primary">Apondi Contractors Limited</a>
+      <button class="w-10 h-10 flex items-center justify-center text-gray-700">
+      <i class="ri-close-line ri-lg"></i>
+      </button>
+      </div>
+      <div class="p-4">
+      <div class="relative mb-4">
+      <input type="text" placeholder="Search articles..." class="w-full px-4 py-2 pr-10 border border-gray-200 rounded focus:border-primary text-sm">
+      <div class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+      <i class="ri-search-line"></i>
+      </div>
+      </div>
+      <nav class="flex flex-col space-y-4">
+      <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2">Home</a>
+      <a href="blog.html" class="text-primary font-medium py-2">Blog</a>
+      <a href="about.html" class="text-gray-600 hover:text-primary transition-colors py-2">About</a>
+      <a href="contact.html" class="text-gray-600 hover:text-primary transition-colors py-2">Contacts</a>
+      </nav>
+      </div>
+      `;
+        document.body.appendChild(mobileMenu);
+        menuButton.addEventListener("click", function () {
+          mobileMenu.classList.remove("translate-x-full");
+        });
+        mobileMenu.querySelector("button").addEventListener("click", function () {
+          mobileMenu.classList.add("translate-x-full");
+        });
+      });
+
+        // Back to Top Button
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+  </body>
+</html>
+
+
