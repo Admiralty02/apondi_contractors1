@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -589,4 +590,597 @@
             });
         </script>
     </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            if (localStorage.getItem('adminToken') !== 'loggedIn') {
+                window.location.href = 'admin-login.html';
+            }
+        </script>
+    </head>
+    <body class="bg-gray-100 font-sans p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Admin Panel</h2>
+            <button aria-label="Logout" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="tabs flex gap-4 mb-6">
+            <button class="tab-btn active bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" data-tab="blog">
+                Add Blog
+            </button>
+            <button class="tab-btn bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" data-tab="project">
+                Add Project
+            </button>
+            <button class="tab-btn bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" data-tab="gallery">
+                Gallery
+            </button>
+            <button class="tab-btn bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" data-tab="service">
+                Add Service
+            </button>
+        </div>
+
+        <div id="blog" class="form-section active bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-4">New Blog Post</h3>
+            <form id="blog-form" class="space-y-4">
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Blog Title"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <textarea
+                    name="body"
+                    placeholder="Blog Content"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                ></textarea>
+                <button
+                    type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Publish Blog
+                </button>
+            </form>
+        </div>
+
+        <div id="project" class="form-section hidden bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-4">New Project</h3>
+            <form id="project-form" class="space-y-4">
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Project Title"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <input
+                    type="text"
+                    name="description"
+                    placeholder="Project Description"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <input
+                    type="file"
+                    name="image"
+                    id="projectImage"
+                    accept="image/*"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <input
+                    type="text"
+                    name="link"
+                    placeholder="Project Link"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <input
+                    type="text"
+                    name="category"
+                    placeholder="Project Category"
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <button
+                    type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Post Project
+                </button>
+            </form>
+        </div>
+
+        <div id="gallery" class="form-section hidden bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-4">Upload to Gallery</h3>
+            <form id="image-upload-form" class="space-y-4">
+                <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept="image/*"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <button
+                    type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Upload
+                </button>
+            </form>
+            <div id="gallery-preview" class="mt-4 flex flex-wrap gap-4"></div>
+        </div>
+
+        <div id="service" class="form-section hidden bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-4">New Service</h3>
+            <form id="service-form" class="space-y-4">
+                <input
+                    type="text"
+                    name="serviceName"
+                    placeholder="Service Name"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <textarea
+                    name="serviceDescription"
+                    placeholder="Service Description"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                ></textarea>
+                <input
+                    type="file"
+                    name="serviceImage"
+                    id="serviceImage"
+                    accept="image/*"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <input
+                    type="text"
+                    name="serviceCategory"
+                    placeholder="Service Category"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+                <button
+                    type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Post Service
+                </button>
+            </form>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow mb-6">
+            <h3 class="text-xl font-semibold mb-4">Dashboard Analytics</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-100 p-4 rounded shadow">
+                    <h4 class="text-lg font-bold">Total Projects</h4>
+                    <p id="totalProjects" class="text-2xl font-semibold">0</p>
+                </div>
+                <div class="bg-green-100 p-4 rounded shadow">
+                    <h4 class="text-lg font-bold">Total Blogs</h4>
+                    <p id="totalBlogs" class="text-2xl font-semibold">0</p>
+                </div>
+                <div class="bg-yellow-100 p-4 rounded shadow">
+                    <h4 class="text-lg font-bold">Total Gallery Items</h4>
+                    <p id="totalGallery" class="text-2xl font-semibold">0</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6" />
+        <h2 class="text-2xl font-bold mb-4">Content Preview</h2>
+
+        <div id="adminContent">
+            <div>
+                <h3 class="text-xl font-semibold mb-2">Projects</h3>
+                <div class="mb-4">
+                    <input
+                        type="text"
+                        id="searchProjects"
+                        placeholder="Search Projects"
+                        class="w-full p-3 border border-gray-300 rounded"
+                    />
+                </div>
+                <ul id="projectList" class="list-disc pl-6">
+                    <li data-id="1" class="flex justify-between items-center">
+                        <span>Project Title</span>
+                        <div class="flex gap-2">
+                            <button class="edit-btn bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600" data-id="1" data-type="project">Edit</button>
+                            <button class="delete-btn bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" data-id="1" data-type="project">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-2">Blogs</h3>
+                <ul id="blogList" class="list-disc pl-6">
+                    <li data-id="1" class="flex justify-between items-center">
+                        <span>Blog Title</span>
+                        <div class="flex gap-2">
+                            <button class="edit-btn bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600" data-id="1" data-type="blog">Edit</button>
+                            <button class="delete-btn bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" data-id="1" data-type="blog">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-2">Gallery</h3>
+                <div
+                    id="galleryContent"
+                    class="flex flex-wrap gap-4"
+                ></div>
+            </div>
+        </div>
+
+        <div id="paginationControls" class="flex justify-between items-center mt-4">
+            <button id="prevPage" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" disabled>Previous</button>
+            <span id="currentPage" class="text-gray-600">Page 1</span>
+            <button id="nextPage" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Next</button>
+        </div>
+
+        <script>
+            const API_BASE_URL = "http://localhost:3000/api";
+
+            async function fetchWithAuth(url, options = {}) {
+                const token = localStorage.getItem("adminToken");
+                const headers = { Authorization: `Bearer ${token}`, ...options.headers };
+                const response = await fetch(url, { ...options, headers });
+                if (!response.ok) throw new Error(await response.text());
+                return response.json();
+            }
+
+            async function fetchAnalytics() {
+                try {
+                    const [projects, blogs, gallery] = await Promise.all([
+                        fetchWithAuth(`${API_BASE_URL}/projects`),
+                        fetchWithAuth(`${API_BASE_URL}/blogs`),
+                        fetchWithAuth(`${API_BASE_URL}/gallery`),
+                    ]);
+                
+                    document.getElementById("totalProjects").textContent = projects.length;
+                    document.getElementById("totalBlogs").textContent = blogs.length;
+                    document.getElementById("totalGallery").textContent = gallery.length;
+                } catch (error) {
+                    console.error("Error fetching analytics:", error);
+                }
+            }
+            
+            document.addEventListener("DOMContentLoaded", fetchAnalytics);
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.tab-btn');
+                const sections = document.querySelectorAll('.form-section');
+
+                // Tab switching logic
+                tabs.forEach((tab) => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach((t) => t.classList.remove('active', 'bg-gray-400'));
+                        sections.forEach((s) => s.classList.add('hidden'));
+
+                        tab.classList.add('active', 'bg-gray-400');
+                        const targetSection = document.getElementById(tab.dataset.tab);
+                        if (targetSection) {
+                            targetSection.classList.remove('hidden');
+                        }
+                    });
+                });
+
+                tabs.forEach((tab) => {
+                    tab.addEventListener("click", () => {
+                        tabs.forEach((t) => t.classList.remove("active", "bg-gray-400"));
+                        tab.classList.add("active", "bg-gray-400");
+                    });
+                });
+
+                // Blog form submission
+                document.getElementById('blog-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const token = localStorage.getItem('adminToken');
+                    const title = e.target.title.value;
+                    const body = e.target.body.value;
+
+                    const submitButton = e.target.querySelector("button[type='submit']");
+                    submitButton.disabled = true;
+                    submitButton.textContent = "Submitting...";
+
+                    const loadingIndicator = document.getElementById("loading");
+                    loadingIndicator.style.display = "block"; // Show loading spinner
+                    try {
+                        const response = await fetch('http://localhost:3000/api/blogs', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: JSON.stringify({ title, body }),
+                        });
+                        if (!response.ok) throw new Error("Failed to add blog");
+                        alert('Blog added successfully');
+                        e.target.reset();
+                    } catch (error) {
+                        alert(`Error: ${error.message}`);
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.textContent = "Publish Blog";
+                        loadingIndicator.style.display = "none"; // Hide loading spinner
+                    }
+                });
+
+                // Project form submission
+                document.getElementById('project-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const token = localStorage.getItem('adminToken');
+                    const formData = new FormData(e.target);
+
+                    const loadingIndicator = document.getElementById("loading");
+                    loadingIndicator.style.display = "block"; // Show loading spinner
+                    try {
+                        const response = await fetch('http://localhost:3000/api/projects', {
+                            method: 'POST',
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            alert('Project added successfully');
+                            e.target.reset();
+                        } else {
+                            alert('Failed to add project');
+                        }
+                    } finally {
+                        loadingIndicator.style.display = "none"; // Hide loading spinner
+                    }
+                });
+
+                // Gallery form submission
+                document.getElementById('image-upload-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const token = localStorage.getItem('adminToken');
+                    const formData = new FormData(e.target);
+
+                    const loadingIndicator = document.getElementById("loading");
+                    loadingIndicator.style.display = "block"; // Show loading spinner
+                    try {
+                        const response = await fetch('http://localhost:3000/api/admin/upload', {
+                            method: 'POST',
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            alert('Image uploaded successfully');
+                            e.target.reset();
+                        } else {
+                            alert('Failed to upload image');
+                        }
+                    } finally {
+                        loadingIndicator.style.display = "none"; // Hide loading spinner
+                    }
+                });
+
+                // Service form submission
+                document.getElementById('service-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const token = localStorage.getItem('adminToken');
+                    const formData = new FormData(e.target);
+
+                    const loadingIndicator = document.getElementById("loading");
+                    loadingIndicator.style.display = "block"; // Show loading spinner
+                    try {
+                        const response = await fetch('http://localhost:3000/api/services', {
+                            method: 'POST',
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            alert('Service added successfully');
+                            e.target.reset();
+                        } else {
+                            alert('Failed to add service');
+                        }
+                    } finally {
+                        loadingIndicator.style.display = "none"; // Hide loading spinner
+                    }
+                });
+
+                // Image preview for gallery
+                document.getElementById("imageInput").addEventListener("change", (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const preview = document.createElement("img");
+                            preview.src = event.target.result;
+                            preview.classList.add("w-32", "h-32", "object-cover", "rounded");
+                            document.getElementById("gallery-preview").appendChild(preview);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                // Project search functionality
+                document.getElementById("searchProjects").addEventListener("input", (e) => {
+                    const query = e.target.value.toLowerCase();
+                    const items = document.querySelectorAll("#projectList li");
+                    items.forEach((item) => {
+                        const text = item.querySelector("span").textContent.toLowerCase();
+                        item.style.display = text.includes(query) ? "flex" : "none";
+                    });
+                });
+            });
+
+            document.addEventListener("click", async (e) => {
+                const target = e.target;
+              
+                // Handle delete action
+                if (target.classList.contains("delete-btn")) {
+                  const id = target.dataset.id;
+                  const type = target.dataset.type;
+                  if (confirm(`Are you sure you want to delete this ${type}?`)) {
+                    const loadingIndicator = document.getElementById("loading");
+                    loadingIndicator.style.display = "block"; // Show loading spinner
+                    try {
+                      const response = await fetch(`${API_BASE_URL}/${type}s/${id}`, {
+                        method: "DELETE",
+                        headers: {
+                          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+                        },
+                      });
+                      if (response.ok) {
+                        alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`);
+                        target.closest("li").remove();
+                      } else {
+                        alert(`Failed to delete ${type}`);
+                      }
+                    } catch (error) {
+                      alert(`Error: ${error.message}`);
+                    } finally {
+                      loadingIndicator.style.display = "none"; // Hide loading spinner
+                    }
+                  }
+                }
+              
+                // Handle edit action
+                if (target.classList.contains("edit-btn")) {
+                  const id = target.dataset.id;
+                  const type = target.dataset.type;
+                  const loadingIndicator = document.getElementById("loading");
+                  loadingIndicator.style.display = "block"; // Show loading spinner
+                  try {
+                    const response = await fetch(`${API_BASE_URL}/${type}s/${id}`, {
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+                      },
+                    });
+                    if (response.ok) {
+                      const data = await response.json();
+                      // Populate the form with the existing data
+                      const form = document.getElementById(`${type}-form`);
+                      Object.keys(data).forEach((key) => {
+                        const input = form.querySelector(`[name="${key}"]`);
+                        if (input) input.value = data[key];
+                      });
+                      // Scroll to the form
+                      form.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      alert(`Failed to fetch ${type} details`);
+                    }
+                  } catch (error) {
+                    alert(`Error: ${error.message}`);
+                  } finally {
+                    loadingIndicator.style.display = "none"; // Hide loading spinner
+                  }
+                }
+              });
+
+            // Logout function
+            function logout() {
+                if (confirm("Are you sure you want to log out?")) {
+                    localStorage.removeItem("adminToken");
+                    window.location.href = "admin-login.html";
+                }
+            }
+
+            let currentPage = 1;
+            const itemsPerPage = 5; // Number of items per page
+            let currentType = "projects"; // Default type (e.g., projects)
+
+            async function fetchPaginatedData(type, page = 1, limit = itemsPerPage) {
+              const token = localStorage.getItem("adminToken");
+              try {
+                const response = await fetch(`${API_BASE_URL}/${type}?page=${page}&limit=${limit}`, {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                });
+                if (!response.ok) throw new Error(`Failed to fetch ${type}`);
+                return await response.json();
+              } catch (error) {
+                console.error(error);
+                alert(`Error fetching ${type}: ${error.message}`);
+                return [];
+              }
+            }
+
+            async function renderContent(type, containerId, page = 1) {
+              const container = document.getElementById(containerId);
+              container.innerHTML = "<p>Loading...</p>"; // Show loading message
+            
+              const data = await fetchPaginatedData(type, page);
+              if (data.length === 0) {
+                container.innerHTML = "<p>No items found.</p>";
+                return;
+              }
+            
+              container.innerHTML = data
+                .map(
+                  (item) => `
+                  <li data-id="${item.id}" class="flex justify-between items-center">
+                    <span>${item.title || item.name}</span>
+                    <div class="flex gap-2">
+                      <button class="edit-btn bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600" data-id="${item.id}" data-type="${type}">Edit</button>
+                      <button class="delete-btn bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" data-id="${item.id}" data-type="${type}">Delete</button>
+                    </div>
+                  </li>
+                `
+                )
+                .join("");
+            }
+
+            function updatePaginationControls() {
+              document.getElementById("currentPage").textContent = `Page ${currentPage}`;
+              document.getElementById("prevPage").disabled = currentPage === 1;
+            }
+
+            document.getElementById("prevPage").addEventListener("click", () => {
+              if (currentPage > 1) {
+                currentPage--;
+                renderContent(currentType, `${currentType}List`, currentPage);
+                updatePaginationControls();
+              }
+            });
+
+            document.getElementById("nextPage").addEventListener("click", async () => {
+              const data = await fetchPaginatedData(currentType, currentPage + 1);
+              if (data.length > 0) {
+                currentPage++;
+                renderContent(currentType, `${currentType}List`, currentPage);
+                updatePaginationControls();
+              }
+            });
+
+            document.querySelectorAll(".tab-btn").forEach((tab) => {
+              tab.addEventListener("click", () => {
+                currentType = tab.dataset.tab; // Update the current type (e.g., "projects", "blogs")
+                currentPage = 1; // Reset to the first page
+                renderContent(currentType, `${currentType}List`, currentPage);
+                updatePaginationControls();
+              });
+            });
+
+            document.addEventListener("DOMContentLoaded", () => {
+              renderContent(currentType, `${currentType}List`, currentPage);
+              updatePaginationControls();
+            });
+        </script>
+    </body>
+>>>>>>> fc22dac9d9fbe3ab62ab93f7bfa4a5605091b1bd
 </html>

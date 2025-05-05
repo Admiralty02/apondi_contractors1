@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -933,3 +934,940 @@ backToTopButton.addEventListener('click', () => {
 </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Apondi Contractors</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#64748b'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+html {
+scroll-behavior: smooth;
+}
+body {
+font-family: 'Inter', sans-serif;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.dropdown {
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+}
+.dropdown-trigger:hover .dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.nav-link {
+position: relative;
+transition: color 0.3s;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -2px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #3b82f6;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+width: 100%;
+}
+.team-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.team-card .social-links {
+opacity: 0;
+transform: translateY(10px);
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.team-card:hover .social-links {
+opacity: 1;
+transform: translateY(0);
+}
+.mobile-menu {
+transform: translateX(100%);
+transition: transform 0.3s ease-out;
+}
+.mobile-menu.active {
+transform: translateX(0);
+}
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+animation: fadeIn 0.6s ease forwards;
+}
+.timeline-item {
+transition: transform 0.3s ease;
+}
+.timeline-item:hover {
+transform: translateY(-5px);
+}
+.value-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.value-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.timeline-scroll::-webkit-scrollbar {
+height: 6px;
+}
+.timeline-scroll::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+.timeline-scroll::-webkit-scrollbar-thumb {
+background: #3b82f6;
+border-radius: 10px;
+}
+.timeline-scroll::-webkit-scrollbar-thumb:hover {
+background: #2563eb;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full h-20 bg-green-500 shadow-sm z-50">
+<div class="container mx-auto px-4 h-full flex items-center justify-between">
+<a href="index.html" class="font-['Pacifico'] text-3xl text-primary">Apondi Contractors Limited</a>
+<!-- Desktop Navigation -->
+<nav class="hidden lg:flex items-center space-x-8">
+<a href="index.html" class="nav-link font-medium text-gray-900 hover:text-primary">Home</a>
+<a href="about.html" class="nav-link active font-medium text-gray-900 hover:text-primary">About</a>
+<div class="dropdown-trigger relative group">
+<a href="service.html" class="nav-link font-medium text-gray-900 hover:text-primary flex items-center">
+Services
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</a>
+<div class="dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded shadow-lg py-2 z-50">
+<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Structural Engineering</a>
+<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Transportation</a>
+<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Environmental Engineering</a>
+<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Construction Management</a>
+<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-50 hover:text-primary">Geotechnical Services</a>
+</div>
+</div>
+<a href="project.html" class="nav-link font-medium text-gray-900 hover:text-primary">Projects</a>
+<a href="blog.html" class="nav-link font-medium text-gray-900 hover:text-primary">Blog</a>
+<a href="contact.html" class="nav-link font-medium text-gray-900 hover:text-primary">Contact</a>
+<a href="#" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">Get a Quote</a>
+</nav>
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-button" class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+</div>
+</header>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-xl z-50 lg:hidden">
+<div class="p-6">
+<div class="flex justify-between items-center mb-8">
+<a href="index.html" class="font-['Pacifico'] text-2xl text-primary">Apondi Contractors Limited</a>
+<button id="close-menu" class="w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<nav class="flex flex-col space-y-4">
+<a href="index.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Home</a>
+<a href="about.html" class="font-medium text-primary py-2 border-b border-gray-100">About</a>
+<div class="py-2 border-b border-gray-100">
+<button id="mobile-services-dropdown" class="flex items-center justify-between w-full font-medium text-gray-900">
+Services
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div id="mobile-services-menu" class="hidden mt-2 pl-4 space-y-2">
+<a href="service.html" class="block py-2 text-gray-800">Structural Engineering</a>
+<a href="service.html" class="block py-2 text-gray-800">Transportation</a>
+<a href="service.html" class="block py-2 text-gray-800">Environmental Engineering</a>
+<a href="service.html" class="block py-2 text-gray-800">Construction Management</a>
+<a href="service.html" class="block py-2 text-gray-800">Geotechnical Services</a>
+</div>
+</div>
+<a href="project.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Projects</a>
+<a href="blog.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Blog</a>
+<a href="contact.html" class="font-medium text-gray-900 py-2 border-b border-gray-100">Contact</a>
+<a href="#" class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center mt-4 whitespace-nowrap">Get a Quote</a>
+</nav>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative pt-20 h-[60vh] w-full overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=modern%2520civil%2520engineering%2520office%2520with%2520team%2520working%2520on%2520blueprints%2520and%2520models%252C%2520bright%2520airy%2520space%2520with%2520glass%2520walls%252C%2520natural%2520lighting%252C%2520professional%2520architectural%2520photography%252C%2520clean%2520and%2520organized%2520workspace%252C%2520blue%2520accents%2520matching%2520company%2520colors&width=1920&height=1080&seq=about-hero&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
+<div class="container mx-auto px-4 h-full flex items-center">
+<div class="hero-content w-full max-w-2xl text-white opacity-0 animate-fade-in">
+<h1 class="text-5xl md:text-6xl font-bold mb-6">About Us</h1>
+<p class="text-xl mb-8 max-w-xl">For over 25 years, we've been at the forefront of civil engineering innovation, delivering exceptional infrastructure solutions that stand the test of time.</p>
+<a href="#company-history" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">Our Journey</a>
+</div>
+</div>
+</section>
+<!-- Company Overview -->
+<section class="py-20">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-4xl font-bold mb-6">Building a Better World Through Engineering Excellence</h2>
+<p class="text-gray-600 mb-6">Founded in 2000, our civil engineering firm has grown from a small team of passionate engineers to a leading infrastructure solutions provider with global reach. We combine technical expertise with innovative thinking to solve the most complex engineering challenges.</p>
+<p class="text-gray-600 mb-6">Our multidisciplinary approach allows us to deliver comprehensive solutions across structural, transportation, environmental, and geotechnical engineering disciplines. With a focus on sustainability and future-ready design, we create infrastructure that serves communities for generations.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#leadership" class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">Meet Our Team</a>
+<a href="contact.html" class="bg-white border border-gray-300 text-gray-800 px-6 py-3 !rounded-button font-medium hover:bg-gray-50 transition whitespace-nowrap">Contact Us</a>
+</div>
+</div>
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=civil%2520engineers%2520in%2520professional%2520setting%2520reviewing%2520blueprints%2520and%2520digital%2520models%252C%2520diverse%2520team%2520collaborating%252C%2520modern%2520office%2520with%2520glass%2520walls%252C%2520professional%2520photography%252C%2520natural%2520lighting%252C%2520blue%2520accents%2520in%2520decor&width=600&height=700&seq=about-overview&orientation=portrait" alt="Engineering team collaboration" class="w-full h-auto rounded-lg shadow-lg object-cover object-top">
+<div class="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-lg shadow-lg">
+<div class="text-4xl font-bold mb-1">25+</div>
+<p class="text-sm font-medium">Years of Excellence</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Company History Timeline -->
+<section id="company-history" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Our Journey</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">From our humble beginnings to becoming an industry leader, explore the key milestones that have shaped our company's history.</p>
+</div>
+<div class="timeline-scroll overflow-x-auto pb-8">
+<div class="flex min-w-max space-x-8 px-4">
+<!-- Timeline Item 1 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2000</div>
+<h3 class="text-xl font-semibold mb-3">Company Founded</h3>
+<p class="text-gray-600 mb-4">Established with a team of 5 engineers focused on small-scale structural projects in the metropolitan area.</p>
+<img src="https://readdy.ai/api/search-image?query=small%2520engineering%2520office%2520with%2520blueprints%2520and%2520early%25202000s%2520computers%252C%2520professional%2520photography%252C%2520nostalgic%2520feel%252C%2520small%2520team%2520working%2520together%252C%2520simple%2520office%2520space&width=300&height=200&seq=timeline1&orientation=landscape" alt="Company founding" class="w-full h-40 object-cover object-top rounded">
+</div>
+<!-- Timeline Item 2 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2005</div>
+<h3 class="text-xl font-semibold mb-3">First Major Project</h3>
+<p class="text-gray-600 mb-4">Secured our first major contract to design a municipal bridge, marking our entry into public infrastructure projects.</p>
+<img src="https://readdy.ai/api/search-image?query=bridge%2520construction%2520site%2520from%2520mid-2000s%252C%2520engineers%2520reviewing%2520plans%252C%2520early%2520construction%2520phase%252C%2520professional%2520photography%252C%2520municipal%2520infrastructure%2520project&width=300&height=200&seq=timeline2&orientation=landscape" alt="First major project" class="w-full h-40 object-cover object-top rounded">
+</div>
+<!-- Timeline Item 3 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2010</div>
+<h3 class="text-xl font-semibold mb-3">Expansion of Services</h3>
+<p class="text-gray-600 mb-4">Added environmental and transportation engineering divisions to provide comprehensive infrastructure solutions.</p>
+<img src="https://readdy.ai/api/search-image?query=engineering%2520firm%2520expansion%252C%2520new%2520office%2520space%2520with%2520multiple%2520departments%252C%2520professional%2520photography%252C%2520growing%2520team%252C%2520environmental%2520and%2520transportation%2520engineering%2520elements%2520visible&width=300&height=200&seq=timeline3&orientation=landscape" alt="Service expansion" class="w-full h-40 object-cover object-top rounded">
+</div>
+<!-- Timeline Item 4 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2015</div>
+<h3 class="text-xl font-semibold mb-3">International Growth</h3>
+<p class="text-gray-600 mb-4">Opened our first international office and began working on projects across three continents.</p>
+<img src="https://readdy.ai/api/search-image?query=international%2520engineering%2520office%2520opening%2520ceremony%252C%2520ribbon%2520cutting%252C%2520diverse%2520team%252C%2520professional%2520photography%252C%2520modern%2520office%2520space%2520with%2520global%2520maps%2520and%2520international%2520elements&width=300&height=200&seq=timeline4&orientation=landscape" alt="International expansion" class="w-full h-40 object-cover object-top rounded">
+</div>
+<!-- Timeline Item 5 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2020</div>
+<h3 class="text-xl font-semibold mb-3">Sustainability Focus</h3>
+<p class="text-gray-600 mb-4">Launched our sustainable infrastructure initiative and received our first green engineering certification.</p>
+<img src="https://readdy.ai/api/search-image?query=sustainable%2520engineering%2520award%2520ceremony%252C%2520green%2520certification%2520presentation%252C%2520professional%2520photography%252C%2520eco-friendly%2520project%2520models%2520displayed%252C%2520team%2520receiving%2520award&width=300&height=200&seq=timeline5&orientation=landscape" alt="Sustainability initiative" class="w-full h-40 object-cover object-top rounded">
+</div>
+<!-- Timeline Item 6 -->
+<div class="timeline-item bg-white rounded-lg shadow-sm p-6 w-80">
+<div class="text-2xl font-bold text-primary mb-3">2025</div>
+<h3 class="text-xl font-semibold mb-3">Digital Transformation</h3>
+<p class="text-gray-600 mb-4">Implemented advanced digital twin technology and AI-powered design solutions across all our engineering services.</p>
+<img src="https://readdy.ai/api/search-image?query=modern%2520engineering%2520digital%2520lab%2520with%2520holographic%2520displays%2520showing%2520infrastructure%2520models%252C%2520engineers%2520using%2520advanced%2520technology%252C%2520professional%2520photography%252C%2520futuristic%2520workspace%2520with%2520blue%2520lighting&width=300&height=200&seq=timeline6&orientation=landscape" alt="Digital transformation" class="w-full h-40 object-cover object-top rounded">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Vision -->
+<section class="py-20">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Mission -->
+<div class="bg-white rounded-lg shadow-sm p-8 border-t-4 border-primary">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-focus-3-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+<p class="text-gray-600 mb-6">To deliver innovative and sustainable engineering solutions that improve infrastructure, enhance communities, and create a positive impact on society while maintaining the highest standards of safety, quality, and environmental responsibility.</p>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Excellence in every project we undertake</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Client-focused approach to engineering challenges</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Sustainable solutions for future generations</span>
+</li>
+</ul>
+</div>
+<!-- Vision -->
+<div class="bg-white rounded-lg shadow-sm p-8 border-t-4 border-primary">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-eye-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+<p class="text-gray-600 mb-6">To be the global leader in innovative civil engineering solutions, recognized for our technical excellence, sustainable practices, and transformative impact on infrastructure development worldwide.</p>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Pioneer in adopting emerging technologies</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Global presence with local expertise</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Shaping the future of infrastructure development</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Values -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Our Core Values</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">These principles guide our decisions, shape our culture, and define how we work with clients and communities.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Value 1 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-award-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Excellence</h3>
+<p class="text-gray-600">We strive for excellence in everything we do, from the quality of our designs to the service we provide our clients. We set high standards and continuously work to exceed them.</p>
+</div>
+<!-- Value 2 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-compass-3-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Integrity</h3>
+<p class="text-gray-600">We conduct our business with honesty, transparency, and ethical standards. We take responsibility for our actions and deliver on our promises to build trust with all stakeholders.</p>
+</div>
+<!-- Value 3 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-lightbulb-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Innovation</h3>
+<p class="text-gray-600">We embrace creativity and forward-thinking approaches to solve complex engineering challenges. We continuously seek new technologies and methodologies to improve our solutions.</p>
+</div>
+<!-- Value 4 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-team-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Collaboration</h3>
+<p class="text-gray-600">We believe in the power of teamwork and partnership. We foster an inclusive environment where diverse perspectives are valued and contribute to better outcomes.</p>
+</div>
+<!-- Value 5 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-recycle-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Sustainability</h3>
+<p class="text-gray-600">We are committed to environmentally responsible engineering practices. We design with future generations in mind, minimizing environmental impact while maximizing resource efficiency.</p>
+</div>
+<!-- Value 6 -->
+<div class="value-card bg-white rounded-lg shadow-sm p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+<i class="ri-heart-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Community Impact</h3>
+<p class="text-gray-600">We recognize our responsibility to the communities we serve. We design infrastructure that improves quality of life and contributes positively to social development.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leadership Team -->
+<section id="leadership" class="py-20">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Our Leadership Team</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals who guide our company's vision and drive our commitment to engineering excellence.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Team Member 1 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520middle-aged%2520male%2520civil%2520engineer%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520serious%2520expression&width=400&height=500&seq=team1&orientation=portrait" alt="Michael Richardson" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">Michael Richardson</h3>
+<p class="text-primary mb-3">Chief Executive Officer</p>
+<p class="text-gray-600 mb-4">With over 30 years of experience in civil engineering, Michael has led the company through significant growth and international expansion since founding it in 2000.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 2 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520female%2520civil%2520engineer%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520warm%2520smile&width=400&height=500&seq=team2&orientation=portrait" alt="Jennifer Chen" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">Jennifer Chen</h3>
+<p class="text-primary mb-3">Chief Technical Officer</p>
+<p class="text-gray-600 mb-4">A structural engineering specialist with expertise in earthquake-resistant design, Jennifer oversees all technical aspects of our projects and innovation initiatives.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 3 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520male%2520civil%2520engineer%2520with%2520glasses%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520approachable%2520expression&width=400&height=500&seq=team3&orientation=portrait" alt="David Okonkwo" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">David Okonkwo</h3>
+<p class="text-primary mb-3">Director of Operations</p>
+<p class="text-gray-600 mb-4">David brings 20 years of project management expertise to ensure our engineering projects are delivered on time, within budget, and to the highest quality standards.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 4 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520female%2520civil%2520engineer%2520with%2520short%2520hair%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520professional%2520expression&width=400&height=500&seq=team4&orientation=portrait" alt="Sophia Martinez" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">Sophia Martinez</h3>
+<p class="text-primary mb-3">Environmental Division Head</p>
+<p class="text-gray-600 mb-4">Leading our environmental engineering initiatives, Sophia specializes in sustainable infrastructure design and green building certification processes.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 5 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520male%2520civil%2520engineer%2520with%2520beard%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520thoughtful%2520expression&width=400&height=500&seq=team5&orientation=portrait" alt="James Wilson" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">James Wilson</h3>
+<p class="text-primary mb-3">Transportation Division Head</p>
+<p class="text-gray-600 mb-4">With expertise in urban mobility and traffic flow optimization, James leads our transportation engineering team in creating efficient infrastructure solutions.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 6 -->
+<div class="team-card bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520confident%2520female%2520civil%2520engineer%2520with%2520long%2520hair%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography%252C%2520confident%2520expression&width=400&height=500&seq=team6&orientation=portrait" alt="Emily Tanaka" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-1">Emily Tanaka</h3>
+<p class="text-primary mb-3">Structural Division Head</p>
+<p class="text-gray-600 mb-4">Emily specializes in advanced structural analysis and has led the design of several award-winning bridges and high-rise buildings around the world.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Company Achievements -->
+<section class="py-20 bg-primary/5">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Our Achievements</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">A track record of excellence and innovation in civil engineering across global markets.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Achievement Stats -->
+<div class="bg-white rounded-lg shadow-sm p-8">
+<div class="grid grid-cols-2 gap-8">
+<div class="text-center">
+<div class="text-5xl font-bold text-primary mb-2">500+</div>
+<p class="text-gray-700">Projects Completed</p>
+</div>
+<div class="text-center">
+<div class="text-5xl font-bold text-primary mb-2">30</div>
+<p class="text-gray-700">Industry Awards</p>
+</div>
+<div class="text-center">
+<div class="text-5xl font-bold text-primary mb-2">42</div>
+<p class="text-gray-700">Countries Served</p>
+</div>
+<div class="text-center">
+<div class="text-5xl font-bold text-primary mb-2">150</div>
+<p class="text-gray-700">Professional Engineers</p>
+</div>
+</div>
+</div>
+<!-- Achievement Chart -->
+<div class="bg-white rounded-lg shadow-sm p-8">
+<h3 class="text-xl font-semibold mb-6">Project Growth by Sector</h3>
+<div id="achievement-chart" class="w-full h-64"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+<!-- Award 1 -->
+<div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-award-fill text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Excellence in Structural Design</h3>
+<p class="text-gray-600 text-sm">American Society of Civil Engineers, 2024</p>
+</div>
+<!-- Award 2 -->
+<div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-award-fill text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Sustainable Infrastructure Innovation</h3>
+<p class="text-gray-600 text-sm">International Green Building Council, 2023</p>
+</div>
+<!-- Award 3 -->
+<div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-award-fill text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Transportation Project of the Year</h3>
+<p class="text-gray-600 text-sm">Global Infrastructure Awards, 2022</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-20">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Client Testimonials</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">What our clients say about working with our engineering team.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+<div class="flex items-center mb-4">
+<div class="text-primary">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 text-lg italic">"Their engineering team delivered innovative solutions that saved us both time and budget on our commercial development project. The attention to detail and commitment to sustainability aligned perfectly with our corporate values."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520business%2520executive%2520in%2520suit%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography&width=80&height=80&seq=test1&orientation=squarish" alt="Robert Johnson" class="w-14 h-14 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold">Robert Johnson</h4>
+<p class="text-sm text-gray-600">Development Director, Westfield Properties</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+<div class="flex items-center mb-4">
+<div class="text-primary">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 text-lg italic">"We've partnered with them on multiple transportation projects, and they consistently deliver high-quality designs that address complex traffic flow challenges. Their collaborative approach made them an extension of our team."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520female%2520city%2520official%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography&width=80&height=80&seq=test2&orientation=squarish" alt="Michelle Patel" class="w-14 h-14 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold">Michelle Patel</h4>
+<p class="text-sm text-gray-600">City Transportation Planner</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+<div class="flex items-center mb-4">
+<div class="text-primary">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 text-lg italic">"Their environmental engineering team helped us implement sustainable water management solutions that not only met regulatory requirements but also reduced our operational costs by 30%. A true win-win partnership."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520male%2520operations%2520manager%2520in%2520business%2520casual%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography&width=80&height=80&seq=test3&orientation=squarish" alt="David Thompson" class="w-14 h-14 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold">David Thompson</h4>
+<p class="text-sm text-gray-600">Operations Manager, GreenTech Industries</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 4 -->
+<div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+<div class="flex items-center mb-4">
+<div class="text-primary">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 text-lg italic">"The structural analysis they provided for our historic building renovation was exceptional. They found creative solutions to preserve architectural elements while ensuring modern safety standards were met."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520female%2520architect%2520in%2520professional%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high%2520quality%2520portrait%2520photography&width=80&height=80&seq=test4&orientation=squarish" alt="Alexandra Bennett" class="w-14 h-14 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold">Alexandra Bennett</h4>
+<p class="text-sm text-gray-600">Principal Architect, Heritage Restoration Group</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section id="contact" class="py-20 bg-primary/10">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="text-4xl font-bold mb-6">Ready to Discuss Your Project?</h2>
+<p class="text-xl text-gray-700 mb-8">Contact our team of experts today to discuss your engineering requirements and discover how we can help bring your vision to life.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a href="#" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">Contact Us</a>
+<a href="#" class="bg-white text-gray-900 px-8 py-3 !rounded-button font-medium hover:bg-gray-100 transition whitespace-nowrap">Request a Consultation</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="index.html" class="font-['Pacifico'] text-3xl text-white mb-6 inline-block">Apondi Contractors Limited</a>
+<p class="text-gray-400 mb-6">Providing innovative engineering solutions for complex infrastructure challenges since 2000.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-6">Services</h3>
+<ul class="space-y-3">
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Structural Engineering</a></li>
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Transportation Engineering</a></li>
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Environmental Engineering</a></li>
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Construction Management</a></li>
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Geotechnical Services</a></li>
+<li><a href="service.html" class="text-gray-400 hover:text-white transition">Water Resources</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+<li><a href="about.html" class="text-primary hover:text-white transition">About Us</a></li>
+<li><a href="project.html" class="text-gray-400 hover:text-white transition">Projects</a></li>
+<li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+<li><a href="career.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+<li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-6">Contact Us</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-400">Argwengs Kodhek Avenue<br>KISUMU, KSM 40100</span>
+</li>
+<li class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-400">+254735490458</span>
+</li>
+<li class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-400">jakochieng01@gmail.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 mb-4 md:mb-0">© 2025 Admiral Technologies. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-500 hover:text-white transition">Terms of Service</a>
+<a href="#" class="text-gray-500 hover:text-white transition">Privacy Policy</a>
+<a href="#" class="text-gray-500 hover:text-white transition">Sitemap</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition-opacity opacity-0">
+    ↑ Back to Top
+</button>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const closeMenuButton = document.getElementById('close-menu');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.add('active');
+});
+closeMenuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('active');
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile services dropdown
+const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+const mobileServicesMenu = document.getElementById('mobile-services-menu');
+mobileServicesDropdown.addEventListener('click', function() {
+mobileServicesMenu.classList.toggle('hidden');
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Sticky header
+const header = document.querySelector('header');
+function updateHeaderOnScroll() {
+if (window.scrollY > 50) {
+header.classList.add('shadow-md');
+header.classList.add('bg-white/95');
+header.classList.add('backdrop-blur-sm');
+} else {
+header.classList.remove('shadow-md');
+header.classList.remove('bg-white/95');
+header.classList.remove('backdrop-blur-sm');
+}
+}
+window.addEventListener('scroll', updateHeaderOnScroll);
+updateHeaderOnScroll();
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Achievement chart
+const chartDom = document.getElementById('achievement-chart');
+if (chartDom) {
+const myChart = echarts.init(chartDom);
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+data: ['Projects Completed'],
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+top: '15%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+data: ['2020', '2021', '2022', '2023', '2024', '2025'],
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937'
+},
+splitLine: {
+lineStyle: {
+color: '#e5e7eb'
+}
+}
+},
+series: [
+{
+name: 'Structural',
+type: 'bar',
+stack: 'total',
+emphasis: {
+focus: 'series'
+},
+data: [32, 38, 45, 52, 60, 68],
+itemStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+barWidth: '30%',
+barCategoryGap: '20%'
+},
+{
+name: 'Transportation',
+type: 'bar',
+stack: 'total',
+emphasis: {
+focus: 'series'
+},
+data: [28, 32, 40, 45, 50, 55],
+itemStyle: {
+color: 'rgba(141, 211, 199, 1)'
+}
+},
+{
+name: 'Environmental',
+type: 'bar',
+stack: 'total',
+emphasis: {
+focus: 'series'
+},
+data: [15, 20, 25, 30, 35, 40],
+itemStyle: {
+color: 'rgba(251, 191, 114, 1)'
+}
+},
+{
+name: 'Other',
+type: 'bar',
+stack: 'total',
+emphasis: {
+focus: 'series'
+},
+data: [10, 15, 20, 25, 30, 35],
+itemStyle: {
+color: 'rgba(252, 141, 98, 1)'
+}
+}
+]
+};
+myChart.setOption(option);
+window.addEventListener('resize', function() {
+myChart.resize();
+});
+}
+});
+
+backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+</script>
+</body>
+</html>
+>>>>>>> fc22dac9d9fbe3ab62ab93f7bfa4a5605091b1bd

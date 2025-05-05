@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -154,4 +155,162 @@
             checkRegistrationStatus();
         </script>
     </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin Login</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                background: #f3f3f3;
+            }
+            form {
+                background: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                width: 300px;
+            }
+            input {
+                width: 100%;
+                margin-bottom: 15px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                width: 100%;
+                padding: 10px;
+                background: #333;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .toggle-link {
+                text-align: center;
+                margin-top: 10px;
+                cursor: pointer;
+                color: #007bff;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form id="login-form">
+            <h3>Admin Login</h3>
+            <input type="text" placeholder="Enter username" id="login-username" required />
+            <input type="password" placeholder="Enter password" id="login-password" required />
+            <button type="submit">Login</button>
+            <div class="toggle-link" id="show-register">Don't have an account? Register</div>
+        </form>
+
+        <form id="register-form" style="display: none;">
+            <h3>Admin Registration</h3>
+            <input type="text" placeholder="Enter username" id="register-username" required />
+            <input type="password" placeholder="Enter password" id="register-password" required />
+            <button type="submit">Register</button>
+            <div class="toggle-link" id="show-login">Already have an account? Login</div>
+        </form>
+
+        <script>
+            // Toggle between login and registration forms
+            document.getElementById('show-register').addEventListener('click', () => {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('register-form').style.display = 'block';
+            });
+
+            document.getElementById('show-login').addEventListener('click', () => {
+                document.getElementById('register-form').style.display = 'none';
+                document.getElementById('login-form').style.display = 'block';
+            });
+
+            // Login form submission
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const username = document.getElementById('login-username').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    const response = await fetch('/admin/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        localStorage.setItem('adminToken', data.token); // Save the token in localStorage
+                        window.location.href = 'admin.html'; // Redirect to the admin panel
+                    } else {
+                        const errorData = await response.json();
+                        alert(errorData.error || 'Invalid username or password');
+                    }
+                } catch (error) {
+                    console.error('Error logging in:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+
+            // Registration form submission
+            document.getElementById('register-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const username = document.getElementById('register-username').value;
+                const password = document.getElementById('register-password').value;
+
+                try {
+                    const response = await fetch('/admin/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    if (response.ok) {
+                        alert('Registration successful! You can now log in.');
+                        document.getElementById('register-form').reset();
+                        document.getElementById('register-form').style.display = 'none';
+                        document.getElementById('login-form').style.display = 'block';
+                    } else {
+                        const errorData = await response.json();
+                        alert(errorData.error || 'Registration failed. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error registering:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+
+            // Check if registration is allowed
+            async function checkRegistrationStatus() {
+                try {
+                    const response = await fetch('/admin/register-status');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.superuserExists) {
+                            document.getElementById('register-form').style.display = 'none';
+                            document.getElementById('show-register').style.display = 'none';
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error checking registration status:', error);
+                }
+            }
+
+            // Call the function on page load
+            checkRegistrationStatus();
+        </script>
+    </body>
+>>>>>>> fc22dac9d9fbe3ab62ab93f7bfa4a5605091b1bd
 </html>
